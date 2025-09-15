@@ -129,7 +129,7 @@ function initAnimations() {
         duration: 1.5,
         ease: 'power4.out',
         force3D: true,
-        will-change: 'transform'
+        'will-change': 'transform'
     });
     
     gsap.from('.title-sub', {
