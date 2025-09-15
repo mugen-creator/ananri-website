@@ -1,10 +1,12 @@
 // GSAP登録
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    }
+});
 
 // ローディングアニメーション
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap === 'undefined') {
         // GSAPが読み込まれていない場合のフォールバック
         document.getElementById('loading').style.display = 'none';

@@ -97,8 +97,10 @@ const cleanupAnimations = () => {
     // 不要なアニメーションのクリーンアップ
     if (typeof gsap !== 'undefined') {
         // スクロールトリガーのリフレッシュ
-        ScrollTrigger.refresh();
-        
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+        }
+
         // 非表示要素のアニメーション停止
         document.querySelectorAll('[style*="visibility: hidden"]').forEach(el => {
             gsap.killTweensOf(el);

@@ -32,6 +32,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+    padding-top: 80px; /* ヘッダーの高さ分のパディング */
 }
 
 /* 3D Canvas背景 */
@@ -440,10 +441,12 @@ body {
 .main-header {
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.98);
     backdrop-filter: blur(20px) saturate(180%);
-    z-index: 1000;
+    z-index: 9999;
     padding: 1rem 2rem;
     transition: all 0.3s;
     box-shadow: 0 2px 20px rgba(139, 0, 0, 0.5);
