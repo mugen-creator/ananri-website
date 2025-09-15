@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="og-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#og-gradient)"/>
+  <text x="600" y="280" font-family="Inter, sans-serif" font-size="80" font-weight="800" fill="white" text-anchor="middle">オルカASP</text>
+  <text x="600" y="350" font-family="Inter, sans-serif" font-size="32" font-weight="400" fill="white" text-anchor="middle" opacity="0.9">完全招待制クローズドASP</text>
+  <path d="M520 400L600 320L680 400L600 480L520 400Z" fill="white" opacity="0.2"/>
+</svg>

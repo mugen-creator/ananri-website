@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | オルカASP</title>
+    <meta name="description" content="オルカASPへのお問い合わせ。クローズドASP参加申請、サポート、その他ご質問はこちらから。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/typography-responsive.css">
+    <link rel="stylesheet" href="./assets/responsive.css">
+    <link rel="stylesheet" href="./assets/page-style.css">
+    <style>
+        /* Service Notice */
+        .service-notice {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .service-notice h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        
+        .service-notice p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Form Tabs */
+        .form-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .form-tab {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 50px;
+            color: #667eea;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .form-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .form-tab:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        /* Form Container */
+        .form-container {
+            display: none;
+        }
+        
+        .form-container.active {
+            display: block;
+        }
+        
+        .form-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            margin-bottom: 24px;
+        }
+        
+        .form-section h3 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Company Info */
+        .company-info {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            margin-top: 40px;
+        }
+        
+        .company-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+        
+        .info-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        
+        .info-table th,
+        .info-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-table th {
+            font-weight: 600;
+            background: #f7f8fa;
+            width: 30%;
+            min-width: 120px;
+        }
+        
+        .info-table td {
+            color: #666;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .service-notice {
+                padding: 30px 16px;
+            }
+            
+            .service-notice h3 {
+                font-size: 1.25rem;
+            }
+            
+            .service-notice p {
+                font-size: 0.9rem;
+            }
+            
+            .form-tabs {
+                gap: 8px;
+            }
+            
+            .form-tab {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+                flex: 1 1 calc(50% - 8px);
+                min-width: 140px;
+            }
+            
+            .form-section {
+                padding: 24px 16px;
+            }
+            
+            .form-section h3 {
+                font-size: 1.25rem;
+            }
+            
+            .submit-btn {
+                font-size: 1rem;
+                padding: 14px 32px;
+                width: 100%;
+            }
+            
+            .company-info {
+                padding: 24px 16px;
+            }
+            
+            .company-info h3 {
+                font-size: 1.25rem;
+            }
+            
+            .info-table {
+                font-size: 0.9rem;
+            }
+            
+            .info-table th,
+            .info-table td {
+                padding: 10px 8px;
+                display: block;
+                width: 100%;
+                border-bottom: none;
+            }
+            
+            .info-table tr {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                display: block;
+                margin-bottom: 12px;
+            }
+            
+            .info-table th {
+                background: none;
+                font-weight: 700;
+                margin-bottom: 4px;
+            }
+            
+            .info-table td {
+                padding-left: 0;
+                margin-bottom: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .form-tab {
+                flex: 1 1 100%;
+            }
+            
+            .page-title {
+                font-size: 1.75rem;
+            }
+            
+            .page-subtitle {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Page Content Wrapper */
+        .page-content {
+            padding: 60px 0;
+            background: #f7f8fa;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 100px 0 60px;
+            color: white;
+            text-align: center;
+        }
+        
+        .breadcrumb {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+        
+        .breadcrumb .separator {
+            margin: 0 8px;
+            opacity: 0.6;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .page-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.95;
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 80px 0 40px;
+            }
+            
+            .page-content {
+                padding: 40px 0;
+            }
+            
+            .content-wrapper {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="#1a1a1a">オルカASP</text>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Mobile menu toggle -->
+            <button class="nav-toggle" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">ホーム</a></li>
+                <li><a href="advertiser.html" class="nav-link">企業・団体様向け</a></li>
+                <li><a href="affiliate.html" class="nav-link">個人様向け</a></li>
+                <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">ホーム</a>
+                <span class="separator">›</span>
+                <span class="current">お問い合わせ</span>
+            </div>
+            <h1 class="page-title">お問い合わせ</h1>
+            <p class="page-subtitle">参加申請・サポート・ご質問</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Service Notice -->
+                <div class="service-notice">
+                    <h3>🎯 クローズド招待制ASP</h3>
+                    <p>
+                        オルカASPは厳選されたパートナーのみが参加できるクローズドASPです。<br>
+                        初回のご相談は無料ですので、お気軽にお問い合わせください。
+                    </p>
+                </div>
+
+                <!-- Contact Form Section -->
+                <div class="form-section">
+                    <h3>お問い合わせフォーム</h3>
+                    <p style="margin-bottom: 2rem; text-align: center;">
+                        広告主様・アフィリエイター様・その他ご質問など、<br>
+                        お気軽にお問い合わせください。
+                    </p>
+                    <div style="text-align: center; padding: 2rem;">
+                        <a href="https://forms.gle/nu3MQu4a5KYdmn4u8" target="_blank" rel="noopener noreferrer" class="submit-btn" style="display: inline-block; text-decoration: none;">
+                            お問い合わせフォームを開く
+                        </a>
+                        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-medium);">
+                            ※ Google フォームが新しいタブで開きます
+                        </p>
+                    </div>
+                    <div style="background: #f7f8fa; padding: 24px; border-radius: 8px; margin-top: 32px;">
+                        <h4 style="font-size: 1.125rem; margin-bottom: 12px; color: #1a1a1a;">
+                            お問い合わせ内容例
+                        </h4>
+                        <ul style="color: #666; line-height: 1.8; padding-left: 20px; text-align: left;">
+                            <li>ASPへの参加申請</li>
+                            <li>広告掲載のご相談</li>
+                            <li>アフィリエイター登録</li>
+                            <li>サービスに関するご質問</li>
+                            <li>その他お問い合わせ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Company Information -->
+                <div class="company-info">
+                    <h3>会社情報</h3>
+                    <table class="info-table">
+                        <tr>
+                            <th>屋号名</th>
+                            <td>つがるメディア工房</td>
+                        </tr>
+                        <tr>
+                            <th>代表者</th>
+                            <td>小笠原 純也</td>
+                        </tr>
+                        <tr>
+                            <th>所在地</th>
+                            <td>〒038-3802 青森県南津軽郡藤崎町大字富柳字福岡317-1</td>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <td>olkaasp.com@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <th>営業時間</th>
+                            <td>平日 10:00～18:00</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: var(--space-lg); font-size: 0.875rem; color: var(--text-medium);">
+                        ※お問い合わせから半日以内にご連絡いたします<br>
+                        ※初回相談は無料です
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#footerGradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="white">オルカASP</text>
+                        <defs>
+                            <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <p class="footer-description">
+                        完全招待制クローズドASP - 厳選されたパートナーシップ
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">サービス</h4>
+                        <ul class="footer-list">
+                            <li><a href="advertiser.html">企業・団体様向け</a></li>
+                            <li><a href="affiliate.html">個人様向け</a></li>
+                            <li><a href="plans.html">料金プラン</a></li>
+                            <li><a href="api.html">API連携</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">サポート</h4>
+                        <ul class="footer-list">
+                            <li><a href="faq.html">よくある質問</a></li>
+                            <li><a href="contact.html">お問い合わせ</a></li>
+                            <li><a href="help.html">ヘルプセンター</a></li>
+                            <li><a href="community.html">コミュニティ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">会社情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="company.html">会社概要</a></li>
+                            <li><a href="careers.html">採用情報</a></li>
+                            <li><a href="press.html">プレスリリース</a></li>
+                            <li><a href="news.html">お知らせ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">法的情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="terms.html">利用規約</a></li>
+                            <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+                            <li><a href="commercial-law.html">特定商取引法</a></li>
+                            <li><a href="security.html">セキュリティ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2025 つがるメディア工房. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/page-script.js"></script>
+    <script>
+        // No form submission needed as we're using Google Forms
+    </script>
+</body>
+</html>

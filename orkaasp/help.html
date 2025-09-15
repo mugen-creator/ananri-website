@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ヘルプセンター | オルカASP</title>
+    <meta name="description" content="オルカASPのヘルプセンター。クローズドASPの使い方、サポート情報をご確認いただけます。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./favicon.svg">
+    <meta name="keywords" content="オルカASP,クローズドASP,アフィリエイト,成果報酬型広告,サポート">
+    
+    <!-- OGP -->
+    <meta property="og:title" content="ヘルプセンター | オルカASP">
+    <meta property="og:description" content="オルカASPのヘルプセンター。クローズドASPの使い方、サポート情報をご確認いただけます。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://orca-asp.com/help.html">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/typography-responsive.css">
+    <link rel="stylesheet" href="./assets/responsive.css">
+    <link rel="stylesheet" href="./assets/page-style.css">
+    <style>
+        .help-search {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: var(--space-4xl) 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .search-box {
+            max-width: 600px;
+            margin: var(--space-2xl) auto 0;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: var(--space-lg) var(--space-xl);
+            padding-right: 60px;
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 1.125rem;
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.25rem;
+        }
+        
+        .help-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .help-category {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            transition: var(--transition-normal);
+            cursor: pointer;
+        }
+        
+        .help-category:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto var(--space-lg);
+        }
+        
+        .guide-list {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .guide-item {
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .guide-item:last-child {
+            border-bottom: none;
+        }
+        
+        .guide-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            transition: var(--transition-fast);
+        }
+        
+        .guide-item a:hover {
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+        
+        .video-tutorials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-2xl);
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .video-info {
+            padding: var(--space-lg);
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-2xl);
+        }
+        
+        .contact-method {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .method-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-md);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none" aria-label="オルカASP">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="#1a1a1a">オルカASP</text>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Mobile menu toggle -->
+            <button class="nav-toggle" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">ホーム</a></li>
+                <li><a href="advertiser.html" class="nav-link">企業・団体様向け</a></li>
+                <li><a href="affiliate.html" class="nav-link">個人様向け</a></li>
+                <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Help Search -->
+    <section class="help-search">
+        <div class="container">
+            <h1 class="page-title">ヘルプセンター</h1>
+            <p class="page-subtitle">文章作成でお困りのことはありませんか？</p>
+            <div class="search-box">
+                <input type="search" class="search-input" placeholder="キーワードで検索（例：料金、納期、修正）" aria-label="ヘルプ検索">
+                <button class="search-btn" aria-label="検索">🔍</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Help Categories -->
+                <section class="content-section">
+                    <h2>カテゴリから探す</h2>
+                    <div class="help-categories">
+                        <div class="help-category">
+                            <div class="category-icon">🚀</div>
+                            <h3>はじめに</h3>
+                            <p>クローズドASPの基本</p>
+                        </div>
+                        <div class="help-category">
+                            <div class="category-icon">💰</div>
+                            <h3>料金・支払い</h3>
+                            <p>料金体系とお支払い方法</p>
+                        </div>
+                        <div class="help-category">
+                            <div class="category-icon">✍️</div>
+                            <h3>文章作成</h3>
+                            <p>文章作成の流れと品質</p>
+                        </div>
+                        <div class="help-category">
+                            <div class="category-icon">🚚</div>
+                            <h3>納期・納品</h3>
+                            <p>納期と納品形式について</p>
+                        </div>
+                        <div class="help-category">
+                            <div class="category-icon">🤝</div>
+                            <h3>サポート</h3>
+                            <p>アフターサポートと相談</p>
+                        </div>
+                        <div class="help-category">
+                            <div class="category-icon">❓</div>
+                            <h3>トラブル解決</h3>
+                            <p>よくある問題と解決方法</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Popular Guides -->
+                <section class="content-section">
+                    <h2>人気のガイド</h2>
+                    <div class="guide-list">
+                        <div class="guide-item">
+                            <a href="#guide1">
+                                <span>📖</span>
+                                <span>初めての方へ - クローズドASP完全ガイド</span>
+                            </a>
+                        </div>
+                        <div class="guide-item">
+                            <a href="#guide2">
+                                <span>💰</span>
+                                <span>料金とお支払い方法の詳細</span>
+                            </a>
+                        </div>
+                        <div class="guide-item">
+                            <a href="#guide3">
+                                <span>✍️</span>
+                                <span>文章作成の流れとポイント</span>
+                            </a>
+                        </div>
+                        <div class="guide-item">
+                            <a href="#guide4">
+                                <span>🚚</span>
+                                <span>納期や納品形式について</span>
+                            </a>
+                        </div>
+                        <div class="guide-item">
+                            <a href="#guide5">
+                                <span>📞</span>
+                                <span>修正依頼やアフターサポートの活用方法</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Video Tutorials -->
+                <section class="content-section">
+                    <h2>動画チュートリアル</h2>
+                    <div class="video-tutorials">
+                        <div class="video-card">
+                            <div class="video-thumbnail" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=250&fit=crop&q=80'); background-size: cover; background-position: center;">▶️</div>
+                            <div class="video-info">
+                                <h4>オルカASP サービス紹介</h4>
+                                <p>クローズドASPの概要と特徴を紹介</p>
+                                <small>再生時間: 5分30秒</small>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">▶️</div>
+                            <div class="video-info">
+                                <h4>文章作成の流れ解説</h4>
+                                <p>ヒアリングから納品までのステップを詳しく解説</p>
+                                <small>再生時間: 8分15秒</small>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">▶️</div>
+                            <div class="video-info">
+                                <h4>効果的な文章の活用方法</h4>
+                                <p>SNSやブログでの文章活用テクニック</p>
+                                <small>再生時間: 10分45秒</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Support -->
+                <section class="content-section">
+                    <h2>お問い合わせ方法</h2>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📧</div>
+                            <h4>メールサポート</h4>
+                            <p>olkaasp.com@gmail.com</p>
+                            <p>24時間以内に返信</p>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📞</div>
+                            <h4>電話サポート</h4>
+                            <p>平日 10:00-18:00</p>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📝</div>
+                            <h4>オンライン相談</h4>
+                            <p>フォームからお申込み</p>
+                            <p>無料相談可能</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FAQ Link -->
+                <div class="contact-box" style="margin-top: var(--space-4xl);">
+                    <h4>解決しない場合は</h4>
+                    <p>よくある質問もご確認ください</p>
+                    <p style="margin-top: var(--space-lg);">
+                        <a href="faq.html" class="btn btn-primary">よくある質問を見る</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none" aria-label="オルカASP">
+                        <rect width="40" height="40" rx="8" fill="url(#footerGradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="white">オルカASP</text>
+                        <defs>
+                            <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <p class="footer-description">
+                        完全招待制クローズドASP - 厳選されたパートナーシップ
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">サービス</h4>
+                        <ul class="footer-list">
+                            <li><a href="advertiser.html">企業・団体様向け</a></li>
+                            <li><a href="affiliate.html">個人様向け</a></li>
+                            <li><a href="plans.html">料金プラン</a></li>
+                            <li><a href="api.html">API連携</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">サポート</h4>
+                        <ul class="footer-list">
+                            <li><a href="faq.html">よくある質問</a></li>
+                            <li><a href="contact.html">お問い合わせ</a></li>
+                            <li><a href="help.html">ヘルプセンター</a></li>
+                            <li><a href="community.html">コミュニティ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">会社情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="company.html">会社概要</a></li>
+                            <li><a href="careers.html">採用情報</a></li>
+                            <li><a href="press.html">プレスリリース</a></li>
+                            <li><a href="news.html">お知らせ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">法的情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="terms.html">利用規約</a></li>
+                            <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+                            <li><a href="commercial-law.html">特定商取引法</a></li>
+                            <li><a href="security.html">セキュリティ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2025 つがるメディア工房. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/page-script.js"></script>
+</body>

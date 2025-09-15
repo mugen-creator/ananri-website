@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アフィリエイター向け | オルカASP</title>
+    <meta name="description" content="業界最高水準の報酬率でアフィリエイト収益を最大化。充実したサポートと豊富な案件であなたの成功をサポート。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/typography-responsive.css">
+    <link rel="stylesheet" href="./assets/responsive.css">
+    <link rel="stylesheet" href="./assets/page-style.css">
+    <style>
+        .affiliate-hero {
+            background: linear-gradient(135deg, #764ba2 0%, #f953c6 100%);
+            padding: calc(80px + var(--space-4xl)) 0 var(--space-4xl);
+            color: white;
+            text-align: center;
+        }
+        
+        .exclusive-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-xl);
+            font-weight: var(--font-weight-semibold);
+        }
+        
+        .earning-calculator {
+            background: var(--bg-light);
+            padding: var(--space-3xl);
+            border-radius: var(--radius-xl);
+            margin: var(--space-3xl) 0;
+        }
+        
+        .calculator-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .calc-input {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        
+        .calc-input label {
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-dark);
+        }
+        
+        .calc-input input {
+            padding: var(--space-md);
+            border: 1px solid #ddd;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+        }
+        
+        .calc-result {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .calc-amount {
+            font-size: 3rem;
+            font-weight: var(--font-weight-extrabold);
+            color: var(--primary-color);
+            margin: var(--space-lg) 0;
+        }
+        
+        .rank-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-2xl);
+        }
+        
+        .rank-card {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            position: relative;
+            transition: var(--transition-normal);
+        }
+        
+        .rank-card.vip {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .rank-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .rank-benefits {
+            text-align: left;
+            margin-top: var(--space-lg);
+        }
+        
+        .rank-benefits li {
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .success-metric {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+        
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: var(--font-weight-extrabold);
+            color: var(--primary-color);
+        }
+        
+        .tool-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-2xl);
+            margin-top: var(--space-2xl);
+        }
+        
+        .tool-card {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition-normal);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .testimonial {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: var(--font-weight-bold);
+        }
+        
+        .testimonial-info h4 {
+            font-size: 1.125rem;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .testimonial-info p {
+            font-size: 0.875rem;
+            color: var(--text-medium);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            line-height: 1.8;
+        }
+        
+        .testimonial-results {
+            display: flex;
+            gap: var(--space-2xl);
+            margin-top: var(--space-lg);
+            padding-top: var(--space-lg);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-item {
+            text-align: center;
+        }
+        
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--primary-color);
+        }
+        
+        .result-label {
+            font-size: 0.75rem;
+            color: var(--text-medium);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="#1a1a1a">オルカASP</text>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Mobile menu toggle -->
+            <button class="nav-toggle" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">ホーム</a></li>
+                <li><a href="advertiser.html" class="nav-link">企業・団体様向け</a></li>
+                <li><a href="affiliate.html" class="nav-link">個人様向け</a></li>
+                <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="affiliate-hero">
+        <div class="container">
+            <div class="exclusive-badge">
+                <span>📝</span>
+                <span>個人の想いを心に響く文章に</span>
+            </div>
+            <h1 class="page-title">個人様向けサービス</h1>
+            <p class="page-subtitle">
+                ブログ、SNS、個人事業のPR文章を<br>
+                地域のプロライターが作成
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Why Choose Personal PR Service -->
+                <section class="content-section">
+                    <h2>なぜクローズドASPを選ぶべきか</h2>
+                    <p>
+                        一般的なASPでは案件の質や報酬条件にばらつきがあり、
+                        効率的に収益を上げることが困難です。クローズドASPでは厳選された案件のみを扱い、
+                        高い報酬率と安定した収益をアフィリエイターに提供します。
+                    </p>
+                    
+                    <div class="stats-row" style="margin-top: var(--space-2xl);">
+                        <div class="success-metric">
+                            <div class="metric-number">3日</div>
+                            <div class="metric-label">平均納期</div>
+                        </div>
+                        <div class="success-metric">
+                            <div class="metric-number">98%</div>
+                            <div class="metric-label">満足度</div>
+                        </div>
+                        <div class="success-metric">
+                            <div class="metric-number">200+</div>
+                            <div class="metric-label">執筆実績</div>
+                        </div>
+                        <div class="success-metric">
+                            <div class="metric-number">無制限</div>
+                            <div class="metric-label">修正回数</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Price Calculator -->
+                <section class="content-section">
+                    <h2>料金シミュレーター</h2>
+                    <div class="earning-calculator">
+                        <h3>PR文章作成の料金を計算</h3>
+                        <div class="calculator-inputs">
+                            <div class="calc-input">
+                                <label for="word-count">文字数</label>
+                                <select id="word-count">
+                                    <option value="500">500文字以下</option>
+                                    <option value="1000" selected>1,000文字程度</option>
+                                    <option value="2000">2,000文字程度</option>
+                                    <option value="3000">3,000文字以上</option>
+                                </select>
+                            </div>
+                            <div class="calc-input">
+                                <label for="content-type">コンテンツ種類</label>
+                                <select id="content-type">
+                                    <option value="1.0">ブログ記事</option>
+                                    <option value="1.2" selected>SNS投稿</option>
+                                    <option value="1.5">プロフィール文</option>
+                                    <option value="1.8">プレスリリース</option>
+                                </select>
+                            </div>
+                            <div class="calc-input">
+                                <label for="urgency">納期</label>
+                                <select id="urgency">
+                                    <option value="1.0" selected>1週間以内</option>
+                                    <option value="1.3">3日以内</option>
+                                    <option value="1.5">24時間以内</option>
+                                </select>
+                            </div>
+                            <div class="calc-input">
+                                <label for="research">取材・リサーチ</label>
+                                <select id="research">
+                                    <option value="0" selected>不要</option>
+                                    <option value="5000">電話取材</option>
+                                    <option value="10000">対面取材</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="calc-result">
+                            <p>お見積もり金額</p>
+                            <div class="calc-amount">¥15,000</div>
+                            <p style="font-size: 0.875rem; color: var(--text-medium);">
+                                ※基本料金：文字数 × 種別 × 納期 + オプション<br>
+                                初回ご利用の方は20%割引適用
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Service Plans -->
+                <section class="content-section">
+                    <h2>個人向けサービスプラン</h2>
+                    <p>
+                        お客様のニーズに合わせた4つのプランをご用意。
+                        ご利用回数に応じて特典やサービスがランクアップします。
+                    </p>
+                    <div class="rank-system">
+                        <div class="rank-card">
+                            <div class="rank-icon">📝</div>
+                            <h3>ライト</h3>
+                            <p>初回利用〜年3回まで</p>
+                            <ul class="rank-benefits">
+                                <li>初回20%割引</li>
+                                <li>修正3回まで</li>
+                                <li>メール相談</li>
+                            </ul>
+                        </div>
+                        <div class="rank-card">
+                            <div class="rank-icon">✏️</div>
+                            <h3>スタンダード</h3>
+                            <p>年4〜12回ご利用</p>
+                            <ul class="rank-benefits">
+                                <li>料金10%常時割引</li>
+                                <li>修正回数無制限</li>
+                                <li>電話相談対応</li>
+                            </ul>
+                        </div>
+                        <div class="rank-card">
+                            <div class="rank-icon">🖊️</div>
+                            <h3>プレミアム</h3>
+                            <p>年13〜24回ご利用</p>
+                            <ul class="rank-benefits">
+                                <li>料金15%常時割引</li>
+                                <li>優先対応（納期短縮）</li>
+                                <li>無料ミニ取材1回</li>
+                            </ul>
+                        </div>
+                        <div class="rank-card vip">
+                            <div class="rank-icon">🏆</div>
+                            <h3>VIP</h3>
+                            <p>年25回以上ご利用</p>
+                            <ul class="rank-benefits">
+                                <li>料金20%常時割引</li>
+                                <li>専属ライター担当</li>
+                                <li>月1回無料コンサル</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Personal Benefits -->
+                <section class="content-section">
+                    <h2>個人向けサービスの特長</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">✨</div>
+                            <h3>個性を活かした文章</h3>
+                            <p>
+                                お客様一人ひとりの個性や魅力を
+                                最大限に引き出す文章を作成。
+                                読み手に強い印象を残す
+                                オリジナリティ溢れる内容をお届けします。
+                            </p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🎯</div>
+                            <h3>目的に最適化</h3>
+                            <p>
+                                ブログ集客、SNS拡散、転職活動、
+                                起業PR、イベント告知など、
+                                具体的な目的に合わせて
+                                最適な文章構成と表現を選択します。
+                            </p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🔍</div>
+                            <h3>丁寧なヒアリング</h3>
+                            <p>
+                                お客様の想いや背景を
+                                じっくりとお聞きして、
+                                表面的でない深みのある
+                                PR文章を作成いたします。
+                            </p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">⚡</div>
+                            <h3>スピード対応</h3>
+                            <p>
+                                急なイベントやキャンペーンにも
+                                柔軟に対応。24時間以内の
+                                特急仕上げオプションも
+                                ご用意しております。
+                            </p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">💡</div>
+                            <h3>アドバイス付き</h3>
+                            <p>
+                                文章作成だけでなく、
+                                効果的な発信方法や
+                                継続的な情報発信のコツも
+                                アドバイスいたします。
+                            </p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🤝</div>
+                            <h3>長期サポート</h3>
+                            <p>
+                                一度ご利用いただいたお客様には
+                                継続的なサポートを提供。
+                                ブランディング構築を
+                                長期的にお手伝いします。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Service Types -->
+                <section class="content-section">
+                    <h2>対応可能な文章タイプ</h2>
+                    <div class="tool-cards">
+                        <div class="tool-card">
+                            <div class="tool-icon">📝</div>
+                            <h3>ブログ記事</h3>
+                            <p>
+                                個人ブログ、企業ブログ、
+                                コラム記事など、
+                                読み手を惹き付ける文章を作成。
+                            </p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">📱</div>
+                            <h3>SNS投稿</h3>
+                            <p>
+                                Twitter、Instagram、Facebook等、
+                                各プラットフォームの特性に合わせた
+                                効果的な投稿文を作成。
+                            </p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">👤</div>
+                            <h3>プロフィール文</h3>
+                            <p>
+                                企業ホームページ、転職サイト、
+                                SNSプロフィールなど、
+                                魅力的な自己紹介文を作成。
+                            </p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">📰</div>
+                            <h3>プレスリリース</h3>
+                            <p>
+                                新サービス、イベント、受賞など、
+                                メディア掲載を目指した
+                                プロフェッショナルな文章を作成。
+                            </p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">🎉</div>
+                            <h3>イベント告知</h3>
+                            <p>
+                                セミナー、ワークショップ、
+                                個人主催イベントなど、
+                                参加者を集める魅力的な文章。
+                            </p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">✍️</div>
+                            <h3>メルマガ・ニュースレター</h3>
+                            <p>
+                                定期発信のメルマガや
+                                企業ニュースレターなど、
+                                継続読者を育てる文章。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Success Stories -->
+                <section class="content-section">
+                    <h2>お客様の声</h2>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">TK</div>
+                            <div class="testimonial-info">
+                                <h4>T.K様（フリーランスライター）</h4>
+                                <p>サービス利用: 1年 / プレミアム会員</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>
+                                「自分で書いたブログ記事はいまいち反応が悪く、
+                                フォロワーもなかなか伸びない状態でした。
+                                オルカASPさんにお願いしてから、同じ内容でも
+                                読み手に伝わる文章に変わり、エンゲージメントが
+                                大幅に向上しました。」
+                            </p>
+                        </div>
+                        <div class="testimonial-results">
+                            <div class="result-item">
+                                <div class="result-value">300%</div>
+                                <div class="result-label">エンゲージメント向上</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">2,000</div>
+                                <div class="result-label">フォロワー増加</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">5星</div>
+                                <div class="result-label">サービス評価</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">MY</div>
+                            <div class="testimonial-info">
+                                <h4>M.Y様（美容サロン経営）</h4>
+                                <p>サービス利用: 8ヶ月 / スタンダード会員</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>
+                                「美容サロンの新メニューやキャンペーンのPR文を
+                                お願いしています。以前は自分で書いていましたが、
+                                プロが書いた文章は明らかに反応が違います。
+                                お客様からの問い合わせも増えて、売上につながっています。」
+                            </p>
+                        </div>
+                        <div class="testimonial-results">
+                            <div class="result-item">
+                                <div class="result-value">40%</div>
+                                <div class="result-label">新規客増加</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">15件</div>
+                                <div class="result-label">文章作成実績</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">リピーター</div>
+                                <div class="result-label">利用状況</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Service Process -->
+                <section class="content-section">
+                    <h2>ご利用までの流れ</h2>
+                    <div class="process-timeline">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>お問い合わせ</h3>
+                                <p>
+                                    メールまたはお電話でご相談内容をお聞かせください。
+                                    作成したい文章の種類、文字数、納期などを確認します。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>ヒアリング・お見積もり</h3>
+                                <p>
+                                    詳細なヒアリングでご要望をお聞かせします。
+                                    目的、ターゲット、トーンなどを確認し、お見積もりを提示。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>ご注文・制作開始</h3>
+                                <p>
+                                    正式にご注文いただいた後、専門ライターが制作開始。
+                                    途中経過も適宜ご報告し、ご要望に応じて調整します。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>納品・アフターサポート</h3>
+                                <p>
+                                    完成した文章を納品し、フィードバックをいただきます。
+                                    修正があれば対応し、継続的なサポートも提供。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="content-section">
+                    <div class="contact-box" style="text-align: center; padding: var(--space-4xl);">
+                        <h3 style="font-size: 2rem; margin-bottom: var(--space-lg);">
+                            あなたの想いを伝える<br>
+                            プロの文章で情報発信を強化
+                        </h3>
+                        <p style="font-size: 1.125rem; margin-bottom: var(--space-2xl);">
+                            ブログ、SNS、個人事業のPRに<br>
+                            心に響く文章で差別化を実現
+                        </p>
+                        <a href="contact.html" class="btn btn-primary btn-large">
+                            無料相談・お問い合わせ
+                        </a>
+                        <p style="margin-top: var(--space-lg); font-size: 0.875rem;">
+                            ※お問い合わせから半日以内にご連絡<br>
+                            ※初回ご利用の方は20%割引適用
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#footerGradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="white">オルカASP</text>
+                        <defs>
+                            <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <p class="footer-description">
+                        完全招待制クローズドASP - 厳選されたパートナーシップ
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">サービス</h4>
+                        <ul class="footer-list">
+                            <li><a href="advertiser.html">広告主向け</a></li>
+                            <li><a href="affiliate.html">アフィリエイター向け</a></li>
+                            <li><a href="plans.html">料金プラン</a></li>
+                            <li><a href="api.html">API連携</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">サポート</h4>
+                        <ul class="footer-list">
+                            <li><a href="faq.html">よくある質問</a></li>
+                            <li><a href="contact.html">お問い合わせ</a></li>
+                            <li><a href="help.html">ヘルプセンター</a></li>
+                            <li><a href="community.html">コミュニティ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">会社情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="company.html">会社概要</a></li>
+                            <li><a href="careers.html">採用情報</a></li>
+                            <li><a href="press.html">プレスリリース</a></li>
+                            <li><a href="news.html">お知らせ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">法的情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="terms.html">利用規約</a></li>
+                            <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+                            <li><a href="commercial-law.html">特定商取引法</a></li>
+                            <li><a href="security.html">セキュリティ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2025 つがるメディア工房. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/page-script.js"></script>
+    <script>
+        // Price Calculator functionality
+        function calculatePrice() {
+            const wordCount = parseInt(document.getElementById('word-count').value) || 1000;
+            const contentType = parseFloat(document.getElementById('content-type').value) || 1.0;
+            const urgency = parseFloat(document.getElementById('urgency').value) || 1.0;
+            const research = parseInt(document.getElementById('research').value) || 0;
+            
+            // Base price calculation: ¥10 per character for basic content
+            const basePrice = wordCount * 10;
+            const adjustedPrice = basePrice * contentType * urgency;
+            const totalPrice = adjustedPrice + research;
+            
+            const formattedPrice = new Intl.NumberFormat('ja-JP', {
+                style: 'currency',
+                currency: 'JPY',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(totalPrice);
+            
+            document.querySelector('.calc-amount').textContent = formattedPrice;
+            
+            // Update discount info
+            const discountPrice = totalPrice * 0.8; // 20% discount for first-time users
+            const comparisonText = `※基本料金：文字数 × 種別 × 納期 + オプション<br>初回ご利用の方は20%割引適用（${new Intl.NumberFormat('ja-JP', {
+                style: 'currency',
+                currency: 'JPY',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(discountPrice)}）`;
+            
+            document.querySelector('.calc-result p:last-child').innerHTML = comparisonText;
+        }
+        
+        // Add event listeners to calculator inputs
+        document.querySelectorAll('.calc-input select').forEach(select => {
+            select.addEventListener('change', calculatePrice);
+        });
+        
+        // Initial calculation
+        calculatePrice();
+    </script>
+</body>

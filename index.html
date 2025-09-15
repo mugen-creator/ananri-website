@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="暗暗裏（ANANRI）- 表の世界では語られない真実を、和の美学で包み込んだアンダーグラウンド文化">
+    <meta name="keywords" content="暗暗裏,ANANRI,アンダーグラウンド,和,社会風刺,パラレルワールド,サイケデリック">
+    <title>暗暗裏 - ANANRI | Underground Japanese Culture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="horror-effects.css">
+    <link rel="stylesheet" href="logo-styles.css">
+    <link rel="stylesheet" href="mobile-styles.css">
+    <link rel="stylesheet" href="madness-styles.css">
+    <!-- Three.js & GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+<body class="horror-mode">
+    <!-- 静的ノイズ -->
+    <div class="static-noise"></div>
+    
+    <!-- ドライバロゴ（隠し要素） -->
+    <img src="ドライバ.png" alt="" class="driver-logo">
+    <!-- 3D Canvas Background -->
+    <canvas id="three-canvas"></canvas>
+    
+    <!-- カーソルエフェクト -->
+    <div class="cursor-follower"></div>
+    <div class="cursor-brush"></div>
+    
+    <!-- ローディング画面 -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-bg-pattern"></div>
+        <div class="loading-content">
+            <div class="loading-logo-container">
+                <img src="暗暗裏.png" alt="暗暗裏" class="loading-logo-simple">
+            </div>
+            <div class="loading-subtitle">
+                <span class="subtitle-text">意識が溶けていく</span>
+            </div>
+            <div class="loading-animation">
+                <div class="ink-drop"></div>
+                <div class="ink-drop-2"></div>
+                <div class="ink-drop-3"></div>
+                <svg class="ink-splash" viewBox="0 0 200 200">
+                    <circle class="splash-circle" cx="100" cy="100" r="0"/>
+                </svg>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+        <div class="loading-particles"></div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="main-header">
+        <nav class="navigation">
+            <div class="logo">
+                <img src="暗暗裏.png" alt="暗暗裏" class="logo-image">
+                <img src="暗暗裏ピンク.png" alt="暗暗裏" class="logo-image-hover">
+            </div>
+            <!-- ハンバーガーメニュー -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#world">異界</a></li>
+                <li><a href="#products">呪物</a></li>
+                <li><a href="#underground">禁忌</a></li>
+                <li><a href="#news">NEWS</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- ヒーローセクション -->
+        <section id="hero" class="hero-section">
+            <div class="parallax-layer" data-speed="0.5">
+                <div class="japanese-pattern"></div>
+            </div>
+            <div class="parallax-layer" data-speed="0.3">
+                <div class="floating-kanji" data-kanji="怨">怨</div>
+                <div class="floating-kanji" data-kanji="呪">呪</div>
+                <div class="floating-kanji" data-kanji="死">死</div>
+                <div class="floating-eye eye-1"></div>
+                <div class="floating-eye eye-2"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-main glitch" data-text="暗暗裏">暗暗裏</span>
+                    <span class="title-sub fade-in">
+                    <span class="distorted-text">現実は</span>
+                    <span class="glitch-text">幻想</span>
+                    <span class="distorted-text">である</span>
+                </span>
+                </h1>
+                <div class="hero-cta">
+                    <a href="#world" class="cta-btn magnetic">
+                        <span class="btn-text">堕ちる</span>
+                        <span class="btn-bg"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-bg">
+                <div class="smoke-effect"></div>
+            </div>
+        </section>
+
+        <!-- WORLD セクション -->
+        <section id="world" class="world-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="blood-drip">異</span>
+                    <span class="blood-drip">界</span>
+                </h2>
+                <p class="section-subtitle">狂気の淵からの囁き</p>
+                <div class="world-grid">
+                    <div class="world-item tilt-card" data-tilt>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h3>思想</h3>
+                                <p>思想・コンセプト</p>
+                                <div class="card-decoration"></div>
+                            </div>
+                            <div class="card-hover">
+                                <p class="creepy-text">君の正気はもう戻らない</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="world-item tilt-card" data-tilt>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h3>並行世界</h3>
+                                <p>パラレルワールド設定</p>
+                                <div class="card-decoration"></div>
+                            </div>
+                            <div class="card-hover">
+                                <p class="creepy-text">ここには出口がない</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="world-item tilt-card" data-tilt>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h3>人物図鑑</h3>
+                                <p>キャラクター図鑑</p>
+                                <div class="card-decoration"></div>
+                            </div>
+                            <div class="card-hover">
+                                <p class="creepy-text">彼らは君を見ている</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS セクション -->
+        <section id="products" class="products-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="shake">呪</span>
+                    <span class="shake">物</span>
+                </h2>
+                <p class="section-subtitle">魂の代償</p>
+                <div class="products-grid">
+                    <div class="product-category">
+                        <h3>衣服</h3>
+                        <p>アパレル</p>
+                    </div>
+                    <div class="product-category">
+                        <h3>絵画</h3>
+                        <p>アートプリント</p>
+                    </div>
+                    <div class="product-category">
+                        <h3>装飾品</h3>
+                        <p>アクセサリー</p>
+                    </div>
+                    <div class="product-category">
+                        <h3>限定品</h3>
+                        <p>限定品</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNDERGROUND セクション -->
+        <section id="underground" class="underground-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="distort">禁</span>
+                    <span class="distort">忌</span>
+                </h2>
+                <p class="section-subtitle">触れてはならぬもの</p>
+                <div class="underground-content">
+                    <div class="underground-item">
+                        <h3>秘密文書</h3>
+                        <p>秘密の資料館</p>
+                    </div>
+                    <div class="underground-item">
+                        <h3>禁断の芸術</h3>
+                        <p>禁断のアート</p>
+                    </div>
+                    <div class="underground-item locked">
+                        <h3>会員限定</h3>
+                        <p>会員限定</p>
+                        <div class="lock-icon">🔒</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWS セクション -->
+        <section id="news" class="news-section">
+            <div class="container">
+                <h2 class="section-title">NEWS</h2>
+                <p class="section-subtitle">最新情報</p>
+                <div class="news-list">
+                    <article class="news-item">
+                        <time>2025.01.15</time>
+                        <h3>サイトオープン</h3>
+                        <p>暗暗裏公式サイトがオープンしました。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT セクション -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">CONTACT</h2>
+                <p class="section-subtitle">お問い合わせ</p>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">お名前</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">メッセージ</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">送信</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="deathllogo透過.png" alt="暗暗裏" class="footer-logo-img">
+                    <span>暗暗裏 - ANANRI</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#privacy">プライバシーポリシー</a>
+                    <a href="#terms">利用規約</a>
+                    <a href="#law">特定商取引法に基づく表記</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 暗暗裏 - ANANRI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="compatibility-fixes.js"></script>
+    <script src="script.js"></script>
+    <script src="three-animation.js"></script>
+    <script src="horror-interactions.js"></script>
+    <script src="logo-interactions.js"></script>
+    <script src="mobile-menu.js"></script>
+</body>
+</html>

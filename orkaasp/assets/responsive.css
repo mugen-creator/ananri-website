@@ -1,0 +1,455 @@
+/* ========================================
+   レスポンシブデザイン完全版
+   ======================================== */
+
+/* 大画面PC（1440px以上） */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .hero-title {
+        font-size: 4.5rem;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.5rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-cta {
+        display: flex;
+        gap: var(--space-xl);
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+    
+    .section-title {
+        font-size: 3.5rem;
+    }
+    
+    .section-description {
+        max-width: 800px;
+    }
+    
+    .features-grid,
+    .benefits-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-3xl);
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .plans-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .blog-grid,
+    .stories-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .stats-row {
+        gap: var(--space-4xl);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .hero {
+        min-height: 80vh;
+        padding: var(--space-6xl) 0;
+    }
+    
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .performance-chart {
+        max-width: 1000px;
+    }
+    
+    .faq-container {
+        max-width: 1000px;
+    }
+    
+    .testimonials {
+        max-width: 1000px;
+    }
+    
+    section {
+        padding: var(--space-6xl) 0;
+    }
+}
+
+/* デスクトップ（1024px-1439px） */
+@media (max-width: 1439px) and (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .hero-cta {
+        justify-content: center;
+    }
+    
+    .features-grid,
+    .benefits-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .plans-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* タブレット横向き（768px-1023px）*/
+@media (max-width: 1023px) and (min-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* スマホ横向き（600px-767px） */
+@media (max-width: 767px) and (min-width: 600px) {
+    .container {
+        max-width: 95%;
+        padding: 0 20px;
+    }
+    
+    .hero-title {
+        font-size: 2.75rem;
+    }
+    
+    .section-title {
+        font-size: 2.25rem;
+    }
+    
+    .features-grid,
+    .benefits-grid,
+    .plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 300px;
+        height: calc(100vh - 80px);
+        background: white;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
+        flex-direction: column;
+        padding: var(--space-2xl) var(--space-xl);
+    }
+    
+    .nav-menu.active {
+        right: 0;
+    }
+    
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .btn {
+        min-height: 44px;
+        font-size: 0.95rem;
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 小型スマホ横向き（481px-599px） */
+@media (max-width: 599px) and (min-width: 481px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .features-grid,
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* スマートフォン縦向き（320px-480px） */
+@media (max-width: 480px) and (min-width: 320px) {
+    /* フォントサイズの最適化 */
+    html {
+        font-size: 14px;
+    }
+    
+    .hero-title {
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.875rem, 3.5vw, 1.125rem);
+    }
+    
+    .section-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+    
+    /* ボタンの最適化 */
+    .btn {
+        min-height: 48px;
+        padding: 12px 24px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .btn-large {
+        min-height: 56px;
+        padding: 16px 32px;
+    }
+    
+    /* ナビゲーション */
+    .nav-link {
+        padding: 12px 16px;
+        font-size: 1rem;
+    }
+    
+    /* グリッドレイアウト */
+    .features-grid,
+    .benefits-grid,
+    .plans-grid,
+    .stories-grid,
+    .blog-grid,
+    .purpose-grid,
+    .tool-cards,
+    .help-categories,
+    .rank-system,
+    .api-features,
+    .integration-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    /* カード類のパディング調整 */
+    .feature-card,
+    .benefit-card,
+    .plan-card,
+    .story-card,
+    .blog-card {
+        padding: var(--space-xl);
+    }
+    
+    /* テーブルのレスポンシブ対応 */
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+    }
+    
+    .info-table,
+    .comparison-table {
+        font-size: 0.875rem;
+    }
+    
+    /* フォーム要素 */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 16px; /* iOS zoom防止 */
+        padding: 12px;
+        width: 100%;
+    }
+    
+    /* 画像の最適化 */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .about-image {
+        max-width: 100%;
+        height: 250px;
+    }
+    
+    .blog-image img {
+        height: 180px;
+    }
+    
+    /* スペーシング調整 */
+    section {
+        padding: 40px 0;
+    }
+    
+    .hero {
+        padding-top: 100px;
+        padding-bottom: 40px;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    /* フッター */
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+        text-align: left;
+    }
+    
+    .footer-column {
+        margin-bottom: 0;
+    }
+    
+    /* 統計表示 */
+    .stats-row {
+        flex-direction: column;
+        gap: var(--space-2xl);
+    }
+    
+    .stat-item {
+        width: 100%;
+    }
+    
+    .stat-divider {
+        display: none;
+    }
+    
+    /* モーダル・ポップアップ */
+    .modal,
+    .popup {
+        width: calc(100% - 32px);
+        margin: 16px;
+    }
+    
+    /* コードブロック */
+    .code-block {
+        font-size: 0.75rem;
+        padding: 12px;
+        overflow-x: auto;
+    }
+    
+    /* FAQ */
+    .faq-question {
+        padding: 16px;
+        font-size: 1rem;
+    }
+    
+    .faq-answer {
+        padding: 0 16px 16px;
+        font-size: 0.875rem;
+    }
+}
+
+/* 超小型デバイス（320px未満） */
+@media (max-width: 319px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    .btn {
+        font-size: 0.875rem;
+        padding: 10px 16px;
+    }
+    
+    .logo-slider {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 横向きモード対応 */
+@media (orientation: landscape) and (max-height: 500px) {
+    .hero {
+        min-height: auto;
+        padding: 40px 0;
+    }
+    
+    .nav-menu {
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+    /* ダークモード時の色調整（必要に応じて） */
+}
+
+/* 高コントラストモード */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid currentColor;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+}
+
+/* プリント対応 */
+@media print {
+    .nav-toggle,
+    .hero-cta,
+    .footer {
+        display: none;
+    }
+    
+    .container {
+        max-width: 100%;
+    }
+    
+    * {
+        background: white !important;
+        color: black !important;
+    }
+}

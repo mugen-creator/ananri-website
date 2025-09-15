@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社概要 | オルカASP</title>
+    <meta name="description" content="オルカASPの会社概要。アフィリエイトマーケティング業界をリードする企業として、広告主とパートナーの成功を支援。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/typography-responsive.css">
+    <link rel="stylesheet" href="./assets/responsive.css">
+    <link rel="stylesheet" href="./assets/page-style.css">
+    <style>
+        .company-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: calc(80px + var(--space-4xl)) 0 var(--space-4xl);
+            color: white;
+            text-align: center;
+        }
+        
+        .mission-section {
+            background: var(--bg-light);
+            padding: var(--space-5xl) 0;
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-2xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .mission-card {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+        
+        .mission-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .ceo-message {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--space-3xl);
+            align-items: start;
+            margin-top: var(--space-3xl);
+        }
+        
+        .ceo-image {
+            width: 100%;
+            max-width: 300px;
+            height: 350px;
+            background: var(--bg-light);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: var(--space-3xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-gradient);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .timeline-date {
+            font-weight: var(--font-weight-bold);
+            color: var(--primary-color);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-2xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .office-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .office-image {
+            height: 200px;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .office-info {
+            padding: var(--space-xl);
+        }
+        
+        .stats-banner {
+            background: var(--primary-gradient);
+            color: white;
+            padding: var(--space-4xl) 0;
+            margin: var(--space-5xl) 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-2xl);
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: var(--font-weight-extrabold);
+            margin-bottom: var(--space-sm);
+        }
+        
+        @media (max-width: 768px) {
+            .ceo-message {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                padding-left: var(--space-2xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="#1a1a1a">オルカASP</text>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Mobile menu toggle -->
+            <button class="nav-toggle" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">ホーム</a></li>
+                <li><a href="advertiser.html" class="nav-link">企業・団体様向け</a></li>
+                <li><a href="affiliate.html" class="nav-link">個人様向け</a></li>
+                <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Company Hero -->
+    <section class="company-hero">
+        <div class="container">
+            <h1 class="page-title">会社概要</h1>
+            <p class="page-subtitle">
+                業界をリードする完全成果報酬型広告プラットフォーム<br>
+                クローズド招待制ASP
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">企業理念</h2>
+                <p class="section-description">
+                    私たちは、地域の文化や伝統、特産品の素晴らしさを、<br>
+                    心に響く文章で全国に伝えていきます
+                </p>
+            </div>
+            
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>Mission</h3>
+                    <p>地域のPR文章を通じて、すべての企業・団体に成長と発展の機会を提供する</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">👁️</div>
+                    <h3>Vision</h3>
+                    <p>業界No.1のクローズドASPとして、アフィリエイトマーケティングをリードする</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">💎</div>
+                    <h3>Value</h3>
+                    <p>信頼・真心・情熱を大切にし、お客様と地域と共に成長し続ける</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CEO Message -->
+    <section class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <section class="content-section">
+                    <h2>代表メッセージ</h2>
+                    <div class="ceo-message">
+                        <div class="ceo-image">👨‍💼</div>
+                        <div class="ceo-content">
+                            <h3>代表<br>小笠原 純也</h3>
+                            <p>
+                                オルカASPは、高品質なアフィリエイトマーケティングプラットフォームを通じて、
+                                広告主とアフィリエイターの双方の成功と利益向上に貢献してまいります。
+                            </p>
+                            <p>
+                                アフィリエイトマーケティングは、単なる広告配信ではなく、商品・サービスの価値を適切に伝える重要な役割を担っています。
+                                私たちのプラットフォームを通じて、質の高いマーケティングを実現していただきたいと思います。
+                            </p>
+                            <p>
+                                アフィリエイトマーケティングは、正しく運用すれば企業と個人の双方にとって非常に有益なビジネスモデルです。
+                                厳選されたパートナーとともに、業界の健全な発展に貢献していきたいと思っています。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>会社情報</h2>
+                    <table class="info-table">
+                        <tr>
+                            <th>屋号名</th>
+                            <td>つがるメディア工房</td>
+                        </tr>
+                        <tr>
+                            <th>事業内容</th>
+                            <td>アフィリエイト広告サービス</td>
+                        </tr>
+                        <tr>
+                            <th>代表者</th>
+                            <td>小笠原 純也（オガサワラ ジュンヤ）</td>
+                        </tr>
+                        <tr>
+                            <th>住所</th>
+                            <td>〒038-3802<br>青森県南津軽郡藤崎町大字富柳字福岡317-1</td>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <td>olkaasp.com@gmail.com</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section class="content-section">
+                    <h2>沿革</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023年4月</div>
+                            <div class="timeline-content">
+                                つがるメディア工房開業<br>
+                                アフィリエイト広告サービスを開始
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023年7月</div>
+                            <div class="timeline-content">
+                                初のクライアント様から高評価<br>
+                                地元特産品PR記事を納品
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024年1月</div>
+                            <div class="timeline-content">
+                                年間執筆実績50記事達成<br>
+                                幅広い業界に対応可能に
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024年8月</div>
+                            <div class="timeline-content">
+                                観光協会との提携開始<br>
+                                地域振興プロジェクトに参加
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025年1月</div>
+                            <div class="timeline-content">
+                                累計執筆実績100記事突破<br>
+                                顧客満足度95%達成
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="stats-banner">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>2年</h3>
+                    <p>運営実績</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100+</h3>
+                    <p>執筆実績</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>承認率</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>顧客満足度</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offices Section -->
+    <section class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <section class="content-section">
+                    <h2>拠点情報</h2>
+                    <div class="office-grid">
+                        <div class="office-card">
+                            <div class="office-image">🏙️</div>
+                            <div class="office-info">
+                                <h3>事務所</h3>
+                                <p>
+                                    〒038-3802<br>
+                                    青森県南津軽郡藤崎町<br>
+                                    大字富柳字福岡317-1<br>
+                                    Email: olkaasp.com@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>認証・受賞歴</h2>
+                    <div class="purpose-grid">
+                        <div class="purpose-card">
+                            <div class="purpose-icon">🏆</div>
+                            <h4>優秀ASP賞 2024</h4>
+                            <p>日本アフィリエイト協議会</p>
+                        </div>
+                        <div class="purpose-card">
+                            <div class="purpose-icon">🛡️</div>
+                            <h4>ビジネスサポート認定</h4>
+                            <p>インターネット広告推進協議会</p>
+                        </div>
+                        <div class="purpose-card">
+                            <div class="purpose-icon">✅</div>
+                            <h4>セキュリティ認証</h4>
+                            <p>情報セキュリティ協会</p>
+                        </div>
+                        <div class="purpose-card">
+                            <div class="purpose-icon">🌟</div>
+                            <h4>優良企業認定</h4>
+                            <p>経済産業省認定</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>採用情報</h2>
+                    <div class="info-box">
+                        <h4>🚀 地域振興に情熱を注ぐパートナーを募集</h4>
+                        <p>
+                            オルカASPは、アフィリエイトマーケティングへの情熱と、
+                            品質の高いサービスを提供できるパートナーを求めています。
+                        </p>
+                        <p>
+                            <strong>採用予定：</strong><br>
+                            • ライター（地域情報特化）<br>
+                            • 取材スタッフ<br>
+                            • 営業・企業開拓<br>
+                            • デザイナー（Webデザイン）
+                        </p>
+                        <p>
+                            詳細はお問い合わせください：<br>
+                            <a href="contact.html">採用に関するお問い合わせ</a>
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#footerGradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="white">オルカASP</text>
+                        <defs>
+                            <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <p class="footer-description">
+                        完全招待制クローズドASP - 厳選されたパートナーシップ
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">サービス</h4>
+                        <ul class="footer-list">
+                            <li><a href="advertiser.html">広告主向け</a></li>
+                            <li><a href="affiliate.html">アフィリエイター向け</a></li>
+                            <li><a href="plans.html">料金プラン</a></li>
+                            <li><a href="api.html">API連携</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">サポート</h4>
+                        <ul class="footer-list">
+                            <li><a href="faq.html">よくある質問</a></li>
+                            <li><a href="contact.html">お問い合わせ</a></li>
+                            <li><a href="help.html">ヘルプセンター</a></li>
+                            <li><a href="community.html">コミュニティ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">会社情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="company.html">会社概要</a></li>
+                            <li><a href="careers.html">採用情報</a></li>
+                            <li><a href="press.html">プレスリリース</a></li>
+                            <li><a href="news.html">お知らせ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">法的情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="terms.html">利用規約</a></li>
+                            <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+                            <li><a href="commercial-law.html">特定商取引法</a></li>
+                            <li><a href="security.html">セキュリティ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2025 つがるメディア工房. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/page-script.js"></script>
+</body>

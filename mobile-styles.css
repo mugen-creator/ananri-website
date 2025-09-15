@@ -1,0 +1,391 @@
+/* モバイル最適化スタイル */
+
+/* ハンバーガーメニュー */
+.hamburger {
+    display: none;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: var(--color-white);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger span:nth-child(2) {
+    top: 12px;
+}
+
+.hamburger span:nth-child(3) {
+    bottom: 0;
+}
+
+/* ハンバーガーメニュー開いた時 */
+.hamburger.active span:nth-child(1) {
+    top: 12px;
+    transform: rotate(45deg);
+    background: var(--color-red);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    bottom: 12px;
+    transform: rotate(-45deg);
+    background: var(--color-red);
+}
+
+/* スマホサイズ (275px-767px) */
+@media (max-width: 767px) {
+    /* ハンバーガーメニュー表示 */
+    .hamburger {
+        display: block;
+    }
+    
+    /* ナビゲーションメニュー */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.3s;
+        border-left: 1px solid var(--color-red);
+        box-shadow: -10px 0 30px rgba(139, 0, 0, 0.5);
+    }
+    
+    .nav-menu.active {
+        right: 0;
+    }
+    
+    .nav-menu li {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.3s;
+    }
+    
+    .nav-menu.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    .nav-menu.active li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-menu.active li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-menu.active li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-menu.active li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-menu.active li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-menu a {
+        font-size: 1.2rem;
+    }
+    
+    /* ヘッダー調整 */
+    .main-header {
+        padding: 0.8rem 1rem;
+    }
+    
+    .logo {
+        width: 80px;
+        height: 40px;
+    }
+    
+    .logo-image,
+    .logo-image-hover {
+        height: 30px;
+    }
+    
+    /* ヒーローセクション */
+    .hero-section {
+        padding-top: 60px;
+    }
+    
+    .title-main {
+        font-size: 3rem !important;
+    }
+    
+    .title-sub {
+        font-size: 1rem !important;
+    }
+    
+    .cta-btn {
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
+    }
+    
+    /* 浮遊漢字 */
+    .floating-kanji {
+        font-size: 4rem;
+    }
+    
+    /* セクションタイトル */
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* コンテナ */
+    .container {
+        padding: 0 1rem;
+    }
+    
+    /* グリッドレイアウト */
+    .world-grid,
+    .products-grid,
+    .underground-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* カード */
+    .tilt-card .card-inner,
+    .product-category,
+    .underground-item {
+        padding: 2rem 1.5rem;
+    }
+    
+    .card-front h3 {
+        font-size: 1.5rem;
+    }
+    
+    /* NEWS */
+    .news-item {
+        padding: 1.5rem;
+    }
+    
+    .news-item h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* フォーム */
+    .contact-form {
+        padding: 0 1rem;
+    }
+    
+    .form-group label {
+        font-size: 1rem;
+    }
+    
+    .submit-btn {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    /* フッター */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* ローディング画面 */
+    .loading-title {
+        font-size: 3rem;
+    }
+    
+    .loading-logo-container {
+        width: 150px;
+        height: 100px;
+    }
+    
+    .loading-logo-simple {
+        max-width: 120px;
+    }
+    
+    .subtitle-text {
+        font-size: 0.9rem;
+    }
+    
+    /* Three.js Canvas無効化 */
+    #three-canvas {
+        display: none;
+    }
+    
+    /* カーソルエフェクト無効化 */
+    .cursor-follower,
+    .cursor-brush {
+        display: none;
+    }
+    
+    /* パーティクル削減 */
+    .loading-particles {
+        display: none;
+    }
+    
+    /* ドライバロゴ非表示 */
+    .driver-logo {
+        display: none;
+    }
+    
+    /* 静的ノイズ軽量化 */
+    .static-noise {
+        opacity: 0.01;
+    }
+    
+    /* 浮遊する目を削減 */
+    .floating-eye {
+        display: none;
+    }
+}
+
+/* タブレットサイズ (768px-1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* コンテナ */
+    .container {
+        padding: 0 2rem;
+    }
+    
+    /* グリッド2列 */
+    .world-grid,
+    .products-grid,
+    .underground-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* タイトルサイズ調整 */
+    .title-main {
+        font-size: 5rem;
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+/* デスクトップ小 (1024px-1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+
+/* iPhone SE (375px) */
+@media (max-width: 375px) {
+    .title-main {
+        font-size: 2.5rem !important;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .hero-cta {
+        margin-top: 2rem;
+    }
+}
+
+/* 超小型デバイス (320px以下) */
+@media (max-width: 320px) {
+    .title-main {
+        font-size: 2rem !important;
+        letter-spacing: 0.1em;
+    }
+    
+    .title-sub {
+        font-size: 0.9rem !important;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .cta-btn {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* 横向き対応 */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        min-height: auto;
+        padding: 100px 0 50px;
+    }
+    
+    .title-main {
+        font-size: 2.5rem;
+    }
+    
+    .loading-screen {
+        padding: 2rem;
+    }
+    
+    .loading-title {
+        font-size: 2rem;
+    }
+}
+
+/* タッチデバイス対応 */
+@media (hover: none) and (pointer: coarse) {
+    /* ホバーエフェクトを無効化 */
+    .world-item:hover,
+    .product-category:hover,
+    .underground-item:hover {
+        transform: none;
+    }
+    
+    /* タップ時のエフェクト */
+    .world-item:active,
+    .product-category:active,
+    .underground-item:active,
+    .cta-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* セーフエリア対応 (iPhone X以降) */
+@supports (padding: env(safe-area-inset-top)) {
+    .main-header {
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    .main-footer {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+    /* 既にダークテーマなので特別な処理は不要 */
+}
+
+/* アクセシビリティ: モーション削減 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .glitch,
+    .shake,
+    .distort {
+        animation: none !important;
+    }
+}

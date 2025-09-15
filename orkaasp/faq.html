@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 | オルカASP</title>
+    <meta name="description" content="オルカASPのよくある質問。クローズドASPへの参加、報酬、サポートについてのご質問にお答えします。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/typography-responsive.css">
+    <link rel="stylesheet" href="./assets/responsive.css">
+    <link rel="stylesheet" href="./assets/page-style.css">
+    <style>
+        .faq-categories {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-3xl);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .faq-category-btn {
+            padding: var(--space-md) var(--space-xl);
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--radius-full);
+            color: var(--primary-color);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .faq-category-btn.active,
+        .faq-category-btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .faq-section {
+            margin-bottom: var(--space-4xl);
+        }
+        
+        .faq-section-title {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            margin-bottom: var(--space-2xl);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .closed-asp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-xl);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="#1a1a1a">オルカASP</text>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Mobile menu toggle -->
+            <button class="nav-toggle" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">ホーム</a></li>
+                <li><a href="advertiser.html" class="nav-link">企業・団体様向け</a></li>
+                <li><a href="affiliate.html" class="nav-link">個人様向け</a></li>
+                <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">ホーム</a>
+                <span class="separator">›</span>
+                <span class="current">よくある質問</span>
+            </div>
+            <h1 class="page-title">よくある質問</h1>
+            <p class="page-subtitle">クローズドASPについて</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="closed-asp-badge">
+                    <span>📝</span>
+                    <span>厳選されたクローズドASP</span>
+                </div>
+
+                <!-- FAQ Categories -->
+                <div class="faq-categories">
+                    <button class="faq-category-btn active" data-category="all">すべて</button>
+                    <button class="faq-category-btn" data-category="service">サービスについて</button>
+                    <button class="faq-category-btn" data-category="order">ご注文・料金</button>
+                    <button class="faq-category-btn" data-category="writing">文章作成</button>
+                    <button class="faq-category-btn" data-category="delivery">納期・納品</button>
+                    <button class="faq-category-btn" data-category="support">サポート</button>
+                </div>
+
+                <!-- サービスについて -->
+                <section class="faq-section" data-category="service">
+                    <h2 class="faq-section-title">📝 サービスについて</h2>
+                    
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>オルカASPのクローズドASPとは何ですか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    オルカASPは、厳選されたパートナーのみが参加できるクローズドASPです。
+                                    個人・企業・団体のPR文章、ブログ記事、SNS投稿、プレスリリースなど、
+                                    様々な文章作成を専門ライターがお手伝いします。
+                                </p>
+                                <p>
+                                    地域の文化や特色を深く理解したライターが、お客様の想いや魅力を
+                                    読み手に響く文章に仕上げます。単なる文章作成ではなく、
+                                    地域ブランディングの観点から戦略的にサポートいたします。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>どのような文章を作成していただけますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    以下のような文章作成を承っております：
+                                </p>
+                                <ul class="styled-list">
+                                    <li>企業・団体のPR文章、会社案内</li>
+                                    <li>個人のプロフィール、自己紹介文</li>
+                                    <li>ブログ記事、コラム記事</li>
+                                    <li>SNS投稿文（Twitter、Instagram、Facebook等）</li>
+                                    <li>プレスリリース、報道資料</li>
+                                    <li>イベント告知、セミナー案内</li>
+                                    <li>メルマガ、ニュースレター</li>
+                                    <li>商品・サービス紹介文</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>他のASPとの違いは何ですか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <table class="info-table">
+                                    <tr>
+                                        <th>項目</th>
+                                        <th>つがるメディア工房</th>
+                                        <th>一般的な代筆サービス</th>
+                                    </tr>
+                                    <tr>
+                                        <td>専門性</td>
+                                        <td>厳選されたクローズド案件特化</td>
+                                        <td>汎用的な文章作成</td>
+                                    </tr>
+                                    <tr>
+                                        <td>案件品質</td>
+                                        <td>高品質で安全性の高い案件のみ</td>
+                                        <td>表面的な情報のみ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>アフターサポート</td>
+                                        <td>継続的な文章戦略アドバイス</td>
+                                        <td>納品後のサポートなし</td>
+                                    </tr>
+                                    <tr>
+                                        <td>修正回数</td>
+                                        <td>無制限</td>
+                                        <td>制限あり</td>
+                                    </tr>
+                                    <tr>
+                                        <td>取材対応</td>
+                                        <td>電話・対面取材可能</td>
+                                        <td>メールのみ</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ご注文・料金について -->
+                <section class="faq-section" data-category="order">
+                    <h2 class="faq-section-title">💰 ご注文・料金について</h2>
+                    
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>どうすればサービスを利用できますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>サービスご利用の流れは以下の通りです：</p>
+                                <ol class="numbered-list">
+                                    <li><strong>お問い合わせ</strong><br>
+                                        メールまたはお電話でご相談内容をお聞かせください</li>
+                                    <li><strong>ヒアリング・お見積もり</strong><br>
+                                        詳細な要件をお聞きし、お見積もりを提示いたします</li>
+                                    <li><strong>ご注文確定</strong><br>
+                                        条件にご納得いただけましたら正式にご注文いただきます</li>
+                                    <li><strong>制作・納品</strong><br>
+                                        専門ライターが制作し、指定期日までに納品いたします</li>
+                                </ol>
+                                <p>
+                                    初回のご相談は無料ですので、お気軽にお問い合わせください。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>料金体系を教えてください</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <h4>基本料金（企業・団体様向け）</h4>
+                                <ul class="styled-list">
+                                    <li>ベーシック：15円/文字</li>
+                                    <li>スタンダード：12円/文字</li>
+                                    <li>プレミアム：10円/文字</li>
+                                </ul>
+                                
+                                <h4>基本料金（個人様向け）</h4>
+                                <ul class="styled-list">
+                                    <li>ライト：18円/文字</li>
+                                    <li>スタンダード：15円/文字</li>
+                                    <li>プレミアム：12円/文字</li>
+                                </ul>
+                                
+                                <p>※初回ご利用の方は20%割引適用<br>
+                                ※取材が必要な場合は別途オプション料金（電話取材：5,000円、対面取材：10,000円）</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>料金の支払い方法は？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    以下のお支払い方法をご利用いただけます：
+                                </p>
+                                <ul class="styled-list">
+                                    <li>銀行振込（前払い）</li>
+                                    <li>PayPay決済</li>
+                                    <li>現金（対面取材時のみ）</li>
+                                </ul>
+                                <p>
+                                    法人様の場合は、月末締め翌月末払いの請求書払いも承ります。
+                                    詳細はお問い合わせの際にご相談ください。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>追加料金が発生する場合はありますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    基本的に、お見積もり時にお伝えした金額以外の追加料金は発生いたしません。
+                                    ただし、以下の場合は事前にご相談の上、追加料金をいただく場合があります：
+                                </p>
+                                <ul class="styled-list">
+                                    <li>制作途中での大幅な仕様変更</li>
+                                    <li>当初予定を大幅に上回る文字数への変更</li>
+                                    <li>特急対応（24時間以内納品）</li>
+                                    <li>専門的な取材や資料収集が必要な場合</li>
+                                </ul>
+                                <p>
+                                    すべて事前にお客様にご確認・ご了承をいただいてから作業いたします。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 文章作成について -->
+                <section class="faq-section" data-category="writing">
+                    <h2 class="faq-section-title">✍️ 文章作成について</h2>
+                    
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>どのような流れで文章を作成しますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>以下の流れで文章作成を行います：</p>
+                                <ul class="styled-list">
+                                    <li><strong>ヒアリング</strong>：目的、ターゲット、想いを詳しくお聞きします</li>
+                                    <li><strong>企画構成</strong>：効果的な文章構成と表現方法を企画</li>
+                                    <li><strong>初稿作成</strong>：プロライターが心を込めて執筆</li>
+                                    <li><strong>修正・調整</strong>：お客様のフィードバックに基づき調整</li>
+                                    <li><strong>最終確認</strong>：細部まで確認し、完成度を高めます</li>
+                                    <li><strong>納品</strong>：Word、テキスト等ご希望の形式で納品</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>文章の品質はどのように保証されますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    以下の取り組みで文章品質を保証しています：
+                                </p>
+                                <table class="info-table">
+                                    <tr>
+                                        <th>項目</th>
+                                        <th>内容</th>
+                                    </tr>
+                                    <tr>
+                                        <td>専門ライター</td>
+                                        <td>アフィリエイトマーケティング専門の経験豊富なチーム</td>
+                                    </tr>
+                                    <tr>
+                                        <td>多重チェック</td>
+                                        <td>校正・校閲・品質チェックを複数回実施</td>
+                                    </tr>
+                                    <tr>
+                                        <td>修正対応</td>
+                                        <td>納得いただけるまで何度でも修正対応</td>
+                                    </tr>
+                                    <tr>
+                                        <td>満足保証</td>
+                                        <td>万が一ご満足いただけない場合は全額返金</td>
+                                    </tr>
+                                </table>
+                                <p>お客様の満足が私たちの使命です。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>どのような業界・業種に対応していますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    あらゆる業界・業種のPR文章作成に対応しています。
+                                    特に以下の分野では豊富な実績があります：
+                                </p>
+                                <ul class="styled-list">
+                                    <li>観光・宿泊業：旅館、ホテル、観光施設、体験サービス</li>
+                                    <li>飲食業：レストラン、カフェ、居酒屋、特産品販売</li>
+                                    <li>小売業：地域密着型商店、工芸品、農産物直売</li>
+                                    <li>サービス業：美容室、整体院、教室、士業事務所</li>
+                                    <li>製造業：地場産業、伝統工芸、食品加工</li>
+                                    <li>農林水産業：農家、漁業関係者、林業関係者</li>
+                                    <li>NPO・自治体：地域活動、イベント、行政サービス</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 納期・納品について -->
+                <section class="faq-section" data-category="delivery">
+                    <h2 class="faq-section-title">🚚 納期・納品について</h2>
+                    
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>納期はどのくらいですか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    文章の種類や文字数によって異なりますが、一般的な納期は以下の通りです：
+                                </p>
+                                <ul class="styled-list">
+                                    <li>ブログ記事（1,000-2,000文字）：3-5日</li>
+                                    <li>SNS投稿文（100-300文字）：1-2日</li>
+                                    <li>会社案内・プロフィール：5-7日</li>
+                                    <li>プレスリリース：7-10日</li>
+                                    <li>メルマガ・コラム：3-7日</li>
+                                </ul>
+                                <p>
+                                    総文字数が多い場合や取材が必要な場合は、さらに数日いただくことがあります。
+                                    特急対応（24時間以内）も可能です。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>納品形式にはどのようなものがありますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    お客様のご希望に合わせて、以下の形式で納品いたします：
+                                </p>
+                                <ul class="styled-list">
+                                    <li>Microsoft Wordファイル（.docx）</li>
+                                    <li>テキストファイル（.txt）</li>
+                                    <li>PDFファイル</li>
+                                    <li>Googleドキュメント</li>
+                                    <li>メール本文での納品</li>
+                                    <li>HTML形式（Webサイト用）</li>
+                                    <li>SNS投稿用フォーマット</li>
+                                </ul>
+                                <p>
+                                    その他、特定のフォーマットやシステムへの直接入力など、
+                                    ご要望に応じて柔軟に対応いたします。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>修正が必要な場合はどうしますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>修正については以下のように対応いたします：</p>
+                                <div class="purpose-grid">
+                                    <div class="purpose-card">
+                                        <div class="purpose-icon">✨</div>
+                                        <h4>無制限修正</h4>
+                                        <p>ご納得いただけるまで何度でも修正対応</p>
+                                    </div>
+                                    <div class="purpose-card">
+                                        <div class="purpose-icon">⚡</div>
+                                        <h4>迅速対応</h4>
+                                        <p>修正依頼は24時間以内に対応開始</p>
+                                    </div>
+                                    <div class="purpose-card">
+                                        <div class="purpose-icon">📞</div>
+                                        <h4>直接やりとり</h4>
+                                        <p>電話やオンラインで直接打ち合わせ可能</p>
+                                    </div>
+                                    <div class="purpose-card">
+                                        <div class="purpose-icon">📈</div>
+                                        <h4>改善提案</h4>
+                                        <p>より効果的な文章にするための提案も</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- サポートについて -->
+                <section class="faq-section" data-category="support">
+                    <h2 class="faq-section-title">🤝 サポートについて</h2>
+                    
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>サポートの対応時間は？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>以下の時間でサポートしております：</p>
+                                <table class="info-table">
+                                    <tr>
+                                        <th>電話サポート</th>
+                                        <td>平日 10:00～18:00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>メールサポート</th>
+                                        <td>24時間受付（半日以内に返信）</td>
+                                    </tr>
+                                    <tr>
+                                        <th>緊急時</th>
+                                        <td>電話にて即座対応</td>
+                                    </tr>
+                                    <tr>
+                                        <th>土日・祥日</th>
+                                        <td>メールのみ（翌営業日に対応）</td>
+                                    </tr>
+                                </table>
+                                <p>
+                                    緊急のご相談や特急案件については、
+                                    営業時間外でも柔軟に対応いたします。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>アフターサポートはありますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    はい、納品後も充実したアフターサポートを提供しています：
+                                </p>
+                                <ul class="styled-list">
+                                    <li>文章の使用方法や効果的な発信タイミングのアドバイス</li>
+                                    <li>SNSやブログでの活用方法のコンサルティング</li>
+                                    <li>文章の效果測定や改善提案</li>
+                                    <li>継続的な文章作成の戦略的サポート</li>
+                                    <li>新しい文章作成時の優先対応</li>
+                                </ul>
+                                <p>
+                                    一度ご利用いただいたお客様には、長期的なパートナーとして
+                                    継続的なサポートをさせていただきます。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>トラブルがあった場合はどうしますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>トラブル解決のための体制を整えています：</p>
+                                <ul class="styled-list">
+                                    <li><strong>即座対応</strong>：トラブル発生時は優先的に対応</li>
+                                    <li><strong>代替手段</strong>：一時的な解決策を迅速に提供</li>
+                                    <li><strong>原因究明</strong>：根本的な原因を徹底的に調査</li>
+                                    <li><strong>再発防止</strong>：同様のトラブルを防ぐための対策実施</li>
+                                    <li><strong>補償対応</strong>：当社起因のトラブルは適切に補償</li>
+                                </ul>
+                                <p>
+                                    お客様には安心してサービスをご利用いただけるよう、
+                                    万全のサポート体制でお待ちしております。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <div class="contact-box" style="margin-top: var(--space-5xl);">
+                    <h4>🎯 クローズドASP参加をご希望の方へ</h4>
+                    <p>
+                        オルカASPのクローズドASPで、安定した収益を
+                        読み手に響く文章に変えませんか？初回ご相談は無料です。
+                    </p>
+                    <p style="margin-top: var(--space-lg);">
+                        <a href="contact.html" class="btn btn-primary">無料相談・お問い合わせ</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#footerGradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="white">オルカASP</text>
+                        <defs>
+                            <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <p class="footer-description">
+                        完全招待制クローズドASP - 厳選されたパートナーシップ
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">サービス</h4>
+                        <ul class="footer-list">
+                            <li><a href="advertiser.html">企業・団体様向け</a></li>
+                            <li><a href="affiliate.html">個人様向け</a></li>
+                            <li><a href="plans.html">料金プラン</a></li>
+                            <li><a href="api.html">API連携</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">サポート</h4>
+                        <ul class="footer-list">
+                            <li><a href="faq.html">よくある質問</a></li>
+                            <li><a href="contact.html">お問い合わせ</a></li>
+                            <li><a href="help.html">ヘルプセンター</a></li>
+                            <li><a href="community.html">コミュニティ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">会社情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="company.html">会社概要</a></li>
+                            <li><a href="careers.html">採用情報</a></li>
+                            <li><a href="press.html">プレスリリース</a></li>
+                            <li><a href="news.html">お知らせ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">法的情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="terms.html">利用規約</a></li>
+                            <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+                            <li><a href="commercial-law.html">特定商取引法</a></li>
+                            <li><a href="security.html">セキュリティ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2025 つがるメディア工房. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/page-script.js"></script>
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                const toggle = item.querySelector('.faq-toggle');
+                
+                if (answer.style.display === 'none' || !answer.style.display) {
+                    answer.style.display = 'block';
+                    toggle.textContent = '−';
+                    item.classList.add('active');
+                } else {
+                    answer.style.display = 'none';
+                    toggle.textContent = '+';
+                    item.classList.remove('active');
+                }
+            });
+        });
+
+        // Category Filter
+        document.querySelectorAll('.faq-category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                // Update active button
+                document.querySelectorAll('.faq-category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide sections
+                document.querySelectorAll('.faq-section').forEach(section => {
+                    if (category === 'all' || section.dataset.category === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>

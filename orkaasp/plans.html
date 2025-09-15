@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>料金プラン | オルカASP</title>
+    <meta name="description" content="オルカASPの料金プラン。広告主・アフィリエイター向けの柔軟なプランをご用意。無料プランから始められます。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/typography-responsive.css">
+    <link rel="stylesheet" href="./assets/responsive.css">
+    <link rel="stylesheet" href="./assets/page-style.css">
+    <style>
+        .plans-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: calc(80px + var(--space-4xl)) 0 var(--space-4xl);
+            color: white;
+            text-align: center;
+        }
+        
+        .plan-selector {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .plan-toggle {
+            display: flex;
+            background: white;
+            border-radius: var(--radius-full);
+            padding: var(--space-xs);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .plan-toggle button {
+            padding: var(--space-md) var(--space-2xl);
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .plan-toggle button.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-2xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .plan-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition-normal);
+        }
+        
+        .plan-card.recommended {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .plan-card.recommended::before {
+            content: 'おすすめ';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: var(--space-sm) var(--space-3xl);
+            transform: rotate(45deg);
+            font-weight: var(--font-weight-bold);
+            font-size: 0.875rem;
+            z-index: 1;
+        }
+        
+        .plan-header {
+            padding: var(--space-2xl);
+            text-align: center;
+            background: var(--bg-light);
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .plan-description {
+            color: var(--text-medium);
+            font-size: 0.875rem;
+        }
+        
+        .plan-pricing {
+            padding: var(--space-2xl);
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .plan-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+        
+        .price-currency {
+            font-size: 1.25rem;
+            color: var(--text-medium);
+        }
+        
+        .price-amount {
+            font-size: 3rem;
+            font-weight: var(--font-weight-extrabold);
+            color: var(--primary-color);
+        }
+        
+        .price-period {
+            color: var(--text-medium);
+        }
+        
+        .plan-commission {
+            margin-top: var(--space-md);
+            font-size: 0.875rem;
+            color: var(--text-medium);
+        }
+        
+        .plan-features {
+            padding: var(--space-2xl);
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: var(--space-md) 0;
+            display: flex;
+            align-items: start;
+            gap: var(--space-md);
+        }
+        
+        .feature-icon {
+            color: var(--success-color);
+            font-weight: var(--font-weight-bold);
+            flex-shrink: 0;
+        }
+        
+        .plan-cta {
+            padding: var(--space-2xl);
+            padding-top: 0;
+        }
+        
+        .plan-cta .btn {
+            width: 100%;
+            padding: var(--space-lg);
+            font-size: 1.125rem;
+        }
+        
+        .comparison-section {
+            margin-top: var(--space-5xl);
+        }
+        
+        .comparison-table {
+            overflow-x: auto;
+            margin-top: var(--space-2xl);
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            min-width: 800px;
+            border-collapse: collapse;
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .comparison-table th {
+            background: var(--primary-gradient);
+            color: white;
+            padding: var(--space-lg);
+            text-align: left;
+            font-weight: var(--font-weight-semibold);
+        }
+        
+        .comparison-table th:first-child {
+            width: 30%;
+        }
+        
+        .comparison-table td {
+            padding: var(--space-lg);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-table tr:hover {
+            background: var(--bg-light);
+        }
+        
+        .check-mark {
+            color: var(--success-color);
+            font-weight: var(--font-weight-bold);
+        }
+        
+        .cross-mark {
+            color: var(--danger-color);
+            font-weight: var(--font-weight-bold);
+        }
+        
+        .enterprise-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: var(--space-4xl);
+            border-radius: var(--radius-xl);
+            margin-top: var(--space-4xl);
+            text-align: center;
+        }
+        
+        .calculator-section {
+            background: white;
+            padding: var(--space-3xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            margin-top: var(--space-3xl);
+        }
+        
+        .calc-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .calc-field {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        
+        .calc-field label {
+            font-weight: var(--font-weight-semibold);
+        }
+        
+        .calc-field input,
+        .calc-field select {
+            padding: var(--space-md);
+            border: 1px solid #ddd;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+        }
+        
+        .calc-results {
+            background: var(--bg-light);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            margin-top: var(--space-2xl);
+        }
+        
+        .calc-result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .calc-result-row:last-child {
+            border-bottom: none;
+            font-size: 1.25rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="#1a1a1a">オルカASP</text>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Mobile menu toggle -->
+            <button class="nav-toggle" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">ホーム</a></li>
+                <li><a href="advertiser.html" class="nav-link">企業・団体様向け</a></li>
+                <li><a href="affiliate.html" class="nav-link">個人様向け</a></li>
+                <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="plans-hero">
+        <div class="container">
+            <h1 class="page-title">料金プラン</h1>
+            <p class="page-subtitle">
+                明確でわかりやすい料金体系<br>
+                企業・団体様、個人様それぞれに最適なプランをご用意
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Plan Selector -->
+                <div class="plan-selector">
+                    <div class="plan-toggle">
+                        <button class="active" data-type="advertiser">企業・団体様向け</button>
+                        <button data-type="affiliate">個人様向け</button>
+                    </div>
+                </div>
+
+                <!-- Corporate Plans -->
+                <div class="plans-container" id="advertiser-plans">
+                    <div class="plans-grid">
+                        <!-- Basic Plan -->
+                        <div class="plan-card">
+                            <div class="plan-header">
+                                <h3 class="plan-name">ベーシック</h3>
+                                <p class="plan-description">小規模事業者・初回利用に最適</p>
+                            </div>
+                            <div class="plan-pricing">
+                                <div class="plan-price">
+                                    <span class="price-currency">¥</span>
+                                    <span class="price-amount">15</span>
+                                    <span class="price-period">/文字</span>
+                                </div>
+                                <p class="plan-commission">基本料金: 1文字15円</p>
+                            </div>
+                            <div class="plan-features">
+                                <ul class="feature-list">
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>初回20%割引</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>修正3回まで無料</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>標準納期: 1週間</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>メール相談</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>基本的な文章タイプ対応</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="plan-cta">
+                                <a href="contact.html" class="btn btn-outline">お問い合わせ</a>
+                            </div>
+                        </div>
+
+                        <!-- Professional Plan -->
+                        <div class="plan-card recommended">
+                            <div class="plan-header">
+                                <h3 class="plan-name">スタンダード</h3>
+                                <p class="plan-description">中小企業・継続利用に最適</p>
+                            </div>
+                            <div class="plan-pricing">
+                                <div class="plan-price">
+                                    <span class="price-currency">¥</span>
+                                    <span class="price-amount">12</span>
+                                    <span class="price-period">/文字</span>
+                                </div>
+                                <p class="plan-commission">基本料金: 1文字12円 (年間2回以上)</p>
+                            </div>
+                            <div class="plan-features">
+                                <ul class="feature-list">
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>20%常時割引</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>修正回数無制限</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>優先納期: 5日</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>電話・メール相談</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>全文章タイプ対応</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>ミニ取材サービス</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>月次進捗レポート</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="plan-cta">
+                                <a href="contact.html" class="btn btn-primary">お問い合わせ</a>
+                            </div>
+                        </div>
+
+                        <!-- Enterprise Plan -->
+                        <div class="plan-card">
+                            <div class="plan-header">
+                                <h3 class="plan-name">プレミアム</h3>
+                                <p class="plan-description">大企業・継続的なブランディングに</p>
+                            </div>
+                            <div class="plan-pricing">
+                                <div class="plan-price">
+                                    <span class="price-currency">¥</span>
+                                    <span class="price-amount">10</span>
+                                    <span class="price-period">/文字</span>
+                                </div>
+                                <p class="plan-commission">基本料金: 1文字10円 (月間5回以上)</p>
+                            </div>
+                            <div class="plan-features">
+                                <ul class="feature-list">
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>33%常時割引</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>専属ライター担当</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>最短72時間納品</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>24時間サポート</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>カスタムコンテンツ対応</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>月書取材サービス</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>戦略コンサルティング</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="plan-cta">
+                                <a href="contact.html" class="btn btn-outline">お問い合わせ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Plans -->
+                <div class="plans-container" id="affiliate-plans" style="display: none;">
+                    <div class="plans-grid">
+                        <!-- Light Plan -->
+                        <div class="plan-card">
+                            <div class="plan-header">
+                                <h3 class="plan-name">ライト</h3>
+                                <p class="plan-description">初回利用・単発依頼に最適</p>
+                            </div>
+                            <div class="plan-pricing">
+                                <div class="plan-price">
+                                    <span class="price-currency">¥</span>
+                                    <span class="price-amount">18</span>
+                                    <span class="price-period">/文字</span>
+                                </div>
+                            </div>
+                            <div class="plan-features">
+                                <ul class="feature-list">
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>初回20%割引適用</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>修正3回まで無料</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>標準納期: 1週間</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>メール相談対応</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>基本的な文章タイプ</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="plan-cta">
+                                <a href="contact.html" class="btn btn-outline">お問い合わせ</a>
+                            </div>
+                        </div>
+
+                        <!-- Premium Plan -->
+                        <div class="plan-card recommended">
+                            <div class="plan-header">
+                                <h3 class="plan-name">スタンダード</h3>
+                                <p class="plan-description">継続利用・リピーターに最適</p>
+                            </div>
+                            <div class="plan-pricing">
+                                <div class="plan-price">
+                                    <span class="price-currency">¥</span>
+                                    <span class="price-amount">15</span>
+                                    <span class="price-period">/文字</span>
+                                </div>
+                                <p class="plan-commission">基本料金: 1文字15円 (年間4回以上)</p>
+                            </div>
+                            <div class="plan-features">
+                                <ul class="feature-list">
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>17%常時割引</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>修正回数無制限</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>優先納期: 5日</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>電話・メール相談</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>全文章タイプ対応</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>無料ミニ取材付き</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>月次進捗レポート</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="plan-cta">
+                                <a href="contact.html" class="btn btn-primary">お問い合わせ</a>
+                            </div>
+                        </div>
+
+                        <!-- VIP Plan -->
+                        <div class="plan-card">
+                            <div class="plan-header">
+                                <h3 class="plan-name">プレミアム</h3>
+                                <p class="plan-description">本格的なブランディングに</p>
+                            </div>
+                            <div class="plan-pricing">
+                                <div class="plan-price">
+                                    <span class="price-currency">¥</span>
+                                    <span class="price-amount">12</span>
+                                    <span class="price-period">/文字</span>
+                                </div>
+                                <p class="plan-commission">基本料金: 1文字12円 (月間2回以上)</p>
+                            </div>
+                            <div class="plan-features">
+                                <ul class="feature-list">
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>33%常時割引</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>専属ライター担当</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>最短3日納品</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>優先サポート</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>カスタムコンテンツ</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>月書取材サービス</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-icon">✓</span>
+                                        <span>ブランディング相談</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="plan-cta">
+                                <a href="contact.html" class="btn btn-outline">お問い合わせ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <section class="comparison-section">
+                    <h2>プラン機能比較</h2>
+                    <div class="comparison-table">
+                        <table id="advertiser-comparison">
+                            <thead>
+                                <tr>
+                                    <th>機能</th>
+                                    <th>ベーシック</th>
+                                    <th>スタンダード</th>
+                                    <th>プレミアム</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>初期費用</td>
+                                    <td>無料</td>
+                                    <td>無料</td>
+                                    <td>無料（設定サポート込み）</td>
+                                </tr>
+                                <tr>
+                                    <td>月額費用</td>
+                                    <td>0円</td>
+                                    <td>50,000円</td>
+                                    <td>個別見積</td>
+                                </tr>
+                                <tr>
+                                    <td>成果報酬手数料</td>
+                                    <td>35%</td>
+                                    <td>30%</td>
+                                    <td>25%～</td>
+                                </tr>
+                                <tr>
+                                    <td>アフィリエイター数上限</td>
+                                    <td>50名</td>
+                                    <td>200名</td>
+                                    <td>無制限</td>
+                                </tr>
+                                <tr>
+                                    <td>管理画面</td>
+                                    <td>基本機能</td>
+                                    <td>高機能版</td>
+                                    <td>カスタマイズ可能</td>
+                                </tr>
+                                <tr>
+                                    <td>レポート機能</td>
+                                    <td>月次</td>
+                                    <td>リアルタイム</td>
+                                    <td>カスタムレポート</td>
+                                </tr>
+                                <tr>
+                                    <td>API連携</td>
+                                    <td><span class="cross-mark">×</span></td>
+                                    <td><span class="check-mark">✓</span></td>
+                                    <td><span class="check-mark">✓</span></td>
+                                </tr>
+                                <tr>
+                                    <td>専任担当者</td>
+                                    <td><span class="cross-mark">×</span></td>
+                                    <td><span class="check-mark">✓</span></td>
+                                    <td><span class="check-mark">✓</span> 専任チーム</td>
+                                </tr>
+                                <tr>
+                                    <td>サポート対応</td>
+                                    <td>メール</td>
+                                    <td>メール・電話</td>
+                                    <td>24時間優先対応</td>
+                                </tr>
+                                <tr>
+                                    <td>A/Bテスト</td>
+                                    <td><span class="cross-mark">×</span></td>
+                                    <td><span class="check-mark">✓</span></td>
+                                    <td><span class="check-mark">✓</span></td>
+                                </tr>
+                                <tr>
+                                    <td>独自機能開発</td>
+                                    <td><span class="cross-mark">×</span></td>
+                                    <td><span class="cross-mark">×</span></td>
+                                    <td><span class="check-mark">✓</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <table id="affiliate-comparison" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th>機能</th>
+                                    <th>無料会員</th>
+                                    <th>プレミアム会員</th>
+                                    <th>VIP会員</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>登録料・月額費用</td>
+                                    <td>無料</td>
+                                    <td>無料</td>
+                                    <td>無料</td>
+                                </tr>
+                                <tr>
+                                    <td>案件アクセス</td>
+                                    <td>基本案件のみ</td>
+                                    <td>独占案件含む</td>
+                                    <td>全案件＋新規優先</td>
+                                </tr>
+                                <tr>
+                                    <td>報酬単価</td>
+                                    <td>標準</td>
+                                    <td>+20%～</td>
+                                    <td>最高単価保証</td>
+                                </tr>
+                                <tr>
+                                    <td>最低支払額</td>
+                                    <td>5,000円</td>
+                                    <td>1,000円</td>
+                                    <td>なし</td>
+                                </tr>
+                                <tr>
+                                    <td>支払いサイクル</td>
+                                    <td>月末締め翌月末</td>
+                                    <td>月末締め翌月末</td>
+                                    <td>即日対応可能</td>
+                                </tr>
+                                <tr>
+                                    <td>承認期間</td>
+                                    <td>通常</td>
+                                    <td>優先（最短即日）</td>
+                                    <td>即日承認</td>
+                                </tr>
+                                <tr>
+                                    <td>サポート</td>
+                                    <td>メール</td>
+                                    <td>専任担当者</td>
+                                    <td>専属コンサルタント</td>
+                                </tr>
+                                <tr>
+                                    <td>レポート</td>
+                                    <td>月次</td>
+                                    <td>リアルタイム</td>
+                                    <td>カスタムレポート</td>
+                                </tr>
+                                <tr>
+                                    <td>特別ボーナス</td>
+                                    <td><span class="cross-mark">×</span></td>
+                                    <td><span class="check-mark">✓</span></td>
+                                    <td><span class="check-mark">✓</span> 最大級</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Cost Calculator -->
+                <section class="content-section">
+                    <h2>料金シミュレーター</h2>
+                    <div class="calculator-section">
+                        <div class="calc-inputs">
+                            <div class="calc-field">
+                                <label for="calc-words">文字数</label>
+                                <select id="calc-words">
+                                    <option value="500">500文字</option>
+                                    <option value="1000" selected>1,000文字</option>
+                                    <option value="2000">2,000文字</option>
+                                    <option value="3000">3,000文字</option>
+                                </select>
+                            </div>
+                            <div class="calc-field">
+                                <label for="calc-type">コンテンツタイプ</label>
+                                <select id="calc-type">
+                                    <option value="1.0">ブログ記事</option>
+                                    <option value="1.2" selected>SNS投稿</option>
+                                    <option value="1.5">プロフィール文</option>
+                                    <option value="1.8">プレスリリース</option>
+                                </select>
+                            </div>
+                            <div class="calc-field">
+                                <label for="calc-plan">プラン選択</label>
+                                <select id="calc-plan">
+                                    <option value="18">ライト（18円/文字）</option>
+                                    <option value="15" selected>スタンダード（15円/文字）</option>
+                                    <option value="12">プレミアム（12円/文字）</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="calc-results">
+                            <div class="calc-result-row">
+                                <span>基本料金</span>
+                                <span id="result-base">¥18,000</span>
+                            </div>
+                            <div class="calc-result-row">
+                                <span>初回割引（-20%）</span>
+                                <span id="result-discount">-¥3,600</span>
+                            </div>
+                            <div class="calc-result-row">
+                                <span>合計金額</span>
+                                <span id="result-total">¥14,400</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Enterprise CTA -->
+                <div class="enterprise-section">
+                    <h2 style="font-size: 2rem; margin-bottom: var(--space-lg);">
+                        大量のPR文章をお考えの企業様へ
+                    </h2>
+                    <p style="font-size: 1.125rem; margin-bottom: var(--space-2xl);">
+                        定期的に多くの文章が必要な企業様には<br>
+                        カスタムプランでさらにお得な料金をご提案いたします
+                    </p>
+                    <div style="display: flex; gap: var(--space-xl); justify-content: center; flex-wrap: wrap;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">100+</div>
+                            <div style="font-size: 0.875rem; color: var(--text-medium);">執筆実績</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">95%</div>
+                            <div style="font-size: 0.875rem; color: var(--text-medium);">顧客満足度</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">2年</div>
+                            <div style="font-size: 0.875rem; color: var(--text-medium);">実績
+                        </div>
+                    </div>
+                    <div style="margin-top: var(--space-2xl);">
+                        <a href="contact.html" class="btn btn-primary btn-large">カスタムプランのご相談</a>
+                    </div>
+                </div>
+
+                <!-- FAQ -->
+                <section class="content-section">
+                    <h2>料金に関するよくある質問</h2>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>最低注文数や初期費用はありますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    いいえ、すべてのプランで初期費用は無料です。
+                                    エンタープライズプランでは、初期設定サポートも含めて無料でご提供しています。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>成果報酬手数料とは何ですか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    アフィリエイター経由で発生した売上に対してかかる手数料です。
+                                    プランによって25%～35%の料率となり、成果が発生しない限り費用はかかりません。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>プランの変更は可能ですか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    はい、いつでもアップグレード可能です。
+                                    ダウングレードは次回更新時から適用されます。
+                                    詳細は専任担当者にご相談ください。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>最低契約期間はありますか？</h3>
+                                <button class="faq-toggle">+</button>
+                            </div>
+                            <div class="faq-answer" style="display: none;">
+                                <p>
+                                    スターター・プロフェッショナルプランは1ヶ月単位、
+                                    エンタープライズプランは6ヶ月からのご契約となります。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#footerGradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="white">オルカASP</text>
+                        <defs>
+                            <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <p class="footer-description">
+                        完全招待制クローズドASP - 厳選されたパートナーシップ
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">サービス</h4>
+                        <ul class="footer-list">
+                            <li><a href="advertiser.html">広告主向け</a></li>
+                            <li><a href="affiliate.html">アフィリエイター向け</a></li>
+                            <li><a href="plans.html">料金プラン</a></li>
+                            <li><a href="api.html">API連携</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">サポート</h4>
+                        <ul class="footer-list">
+                            <li><a href="faq.html">よくある質問</a></li>
+                            <li><a href="contact.html">お問い合わせ</a></li>
+                            <li><a href="help.html">ヘルプセンター</a></li>
+                            <li><a href="community.html">コミュニティ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">会社情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="company.html">会社概要</a></li>
+                            <li><a href="careers.html">採用情報</a></li>
+                            <li><a href="press.html">プレスリリース</a></li>
+                            <li><a href="news.html">お知らせ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">法的情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="terms.html">利用規約</a></li>
+                            <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+                            <li><a href="commercial-law.html">特定商取引法</a></li>
+                            <li><a href="security.html">セキュリティ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2025 つがるメディア工房. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/page-script.js"></script>
+    <script>
+        // Plan Toggle
+        document.querySelectorAll('.plan-toggle button').forEach(button => {
+            button.addEventListener('click', function() {
+                const type = this.dataset.type;
+                
+                // Update active button
+                document.querySelectorAll('.plan-toggle button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide plans
+                if (type === 'advertiser') {
+                    document.getElementById('advertiser-plans').style.display = 'block';
+                    document.getElementById('affiliate-plans').style.display = 'none';
+                    document.getElementById('advertiser-comparison').style.display = 'table';
+                    document.getElementById('affiliate-comparison').style.display = 'none';
+                } else {
+                    document.getElementById('advertiser-plans').style.display = 'none';
+                    document.getElementById('affiliate-plans').style.display = 'block';
+                    document.getElementById('advertiser-comparison').style.display = 'none';
+                    document.getElementById('affiliate-comparison').style.display = 'table';
+                }
+            });
+        });
+
+        // Calculator
+        function calculateCost() {
+            const words = parseInt(document.getElementById('calc-words').value) || 1000;
+            const type = parseFloat(document.getElementById('calc-type').value) || 1.0;
+            const pricePerChar = parseInt(document.getElementById('calc-plan').value) || 15;
+            
+            const basePrice = words * pricePerChar * type;
+            const discount = basePrice * 0.2; // 20% discount
+            const total = basePrice - discount;
+            
+            document.getElementById('result-base').textContent = new Intl.NumberFormat('ja-JP', {
+                style: 'currency',
+                currency: 'JPY',
+                minimumFractionDigits: 0
+            }).format(basePrice);
+            
+            document.getElementById('result-discount').textContent = new Intl.NumberFormat('ja-JP', {
+                style: 'currency',
+                currency: 'JPY',
+                minimumFractionDigits: 0
+            }).format(-discount);
+            
+            document.getElementById('result-total').textContent = new Intl.NumberFormat('ja-JP', {
+                style: 'currency',
+                currency: 'JPY',
+                minimumFractionDigits: 0
+            }).format(total);
+        }
+
+        document.getElementById('calc-words').addEventListener('change', calculateCost);
+        document.getElementById('calc-type').addEventListener('change', calculateCost);
+        document.getElementById('calc-plan').addEventListener('change', calculateCost);
+        
+        // Initial calculation
+        calculateCost();
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                const toggle = item.querySelector('.faq-toggle');
+                
+                if (answer.style.display === 'none' || !answer.style.display) {
+                    answer.style.display = 'block';
+                    toggle.textContent = '−';
+                    item.classList.add('active');
+                } else {
+                    answer.style.display = 'none';
+                    toggle.textContent = '+';
+                    item.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>

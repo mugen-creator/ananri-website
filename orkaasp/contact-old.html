@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>審査申請・お問い合わせ | オルカASP</title>
+    <meta name="description" content="オルカASPの審査申請・お問い合わせフォーム。クローズドASPへの参加申請。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/typography-responsive.css">
+    <link rel="stylesheet" href="./assets/responsive.css">
+    <link rel="stylesheet" href="./assets/page-style.css">
+    <style>
+        .closed-asp-notice {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+        }
+        
+        .closed-asp-notice h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .form-tabs {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-3xl);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .form-tab {
+            padding: var(--space-md) var(--space-2xl);
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--radius-full);
+            color: var(--primary-color);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .form-tab.active {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .form-container {
+            display: none;
+        }
+        
+        .form-container.active {
+            display: block;
+        }
+        
+        .form-section {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl);
+            box-shadow: var(--shadow-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .form-section h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-sm);
+            color: var(--text-dark);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--space-md);
+            border: 1px solid #ddd;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: var(--transition-fast);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-hint {
+            font-size: 0.875rem;
+            color: var(--text-medium);
+            margin-top: var(--space-xs);
+        }
+        
+        .required {
+            color: var(--danger-color);
+        }
+        
+        .criteria-check {
+            background: var(--bg-light);
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .criteria-check h4 {
+            font-size: 1.125rem;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: start;
+            gap: var(--space-sm);
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-top: 4px;
+        }
+        
+        .submit-section {
+            text-align: center;
+            margin-top: var(--space-3xl);
+        }
+        
+        .submit-btn {
+            padding: var(--space-lg) var(--space-3xl);
+            font-size: 1.125rem;
+        }
+        
+        .invitation-code-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-2xl);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .invitation-code-section h4 {
+            color: var(--primary-color);
+            margin-bottom: var(--space-lg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="#1a1a1a">オルカASP</text>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Mobile menu toggle -->
+            <button class="nav-toggle" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">ホーム</a></li>
+                <li><a href="advertiser.html" class="nav-link">広告主向け</a></li>
+                <li><a href="affiliate.html" class="nav-link">アフィリエイター向け</a></li>
+                <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">ホーム</a>
+                <span class="separator">›</span>
+                <span class="current">審査申請・お問い合わせ</span>
+            </div>
+            <h1 class="page-title">審査申請・お問い合わせ</h1>
+            <p class="page-subtitle">クローズドASPへの参加申請</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Closed ASP Notice -->
+                <div class="closed-asp-notice">
+                    <h3>🔒 完全招待制クローズドASP</h3>
+                    <p>
+                        オルカASPは厳選されたパートナーのみが参加できる完全招待制のアフィリエイトサービスです。<br>
+                        参加には招待または厳正な審査が必要となります。
+                    </p>
+                </div>
+
+                <!-- Form Tabs -->
+                <div class="form-tabs">
+                    <button class="form-tab active" data-tab="advertiser">広告主として参加</button>
+                    <button class="form-tab" data-tab="affiliate">アフィリエイターとして参加</button>
+                    <button class="form-tab" data-tab="invitation">招待コードをお持ちの方</button>
+                    <button class="form-tab" data-tab="inquiry">その他お問い合わせ</button>
+                </div>
+
+                <!-- Advertiser Form -->
+                <div class="form-container active" id="advertiser">
+                    <form class="audit-form">
+                        <div class="form-section">
+                            <h3>広告主様 審査申請フォーム</h3>
+                            
+                            <div class="criteria-check">
+                                <h4>審査基準チェック</h4>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="adv-check1" required>
+                                        <label for="adv-check1">法人として1年以上の事業実績がある</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="adv-check2" required>
+                                        <label for="adv-check2">月間広告予算100万円以上を確保できる</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="adv-check3" required>
+                                        <label for="adv-check3">承認率85%以上を維持できる</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="adv-check4" required>
+                                        <label for="adv-check4">法令遵守・コンプライアンス体制が整っている</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-company">会社名 <span class="required">*</span></label>
+                                <input type="text" id="adv-company" name="company" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-url">企業サイトURL <span class="required">*</span></label>
+                                <input type="url" id="adv-url" name="url" required>
+                                <p class="form-hint">審査の参考にさせていただきます</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-name">ご担当者名 <span class="required">*</span></label>
+                                <input type="text" id="adv-name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-position">部署・役職 <span class="required">*</span></label>
+                                <input type="text" id="adv-position" name="position" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-email">メールアドレス <span class="required">*</span></label>
+                                <input type="email" id="adv-email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-phone">電話番号 <span class="required">*</span></label>
+                                <input type="tel" id="adv-phone" name="phone" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-budget">月間広告予算 <span class="required">*</span></label>
+                                <select id="adv-budget" name="budget" required>
+                                    <option value="">選択してください</option>
+                                    <option value="100-300">100万円～300万円</option>
+                                    <option value="300-500">300万円～500万円</option>
+                                    <option value="500-1000">500万円～1,000万円</option>
+                                    <option value="1000-3000">1,000万円～3,000万円</option>
+                                    <option value="3000+">3,000万円以上</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-category">業種・商材 <span class="required">*</span></label>
+                                <select id="adv-category" name="category" required>
+                                    <option value="">選択してください</option>
+                                    <option value="finance">金融・保険</option>
+                                    <option value="beauty">美容・健康</option>
+                                    <option value="education">教育・資格</option>
+                                    <option value="realestate">不動産</option>
+                                    <option value="ec">EC・通販</option>
+                                    <option value="travel">旅行・レジャー</option>
+                                    <option value="it">IT・ソフトウェア</option>
+                                    <option value="other">その他</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-experience">アフィリエイト広告の利用経験 <span class="required">*</span></label>
+                                <select id="adv-experience" name="experience" required>
+                                    <option value="">選択してください</option>
+                                    <option value="none">利用経験なし</option>
+                                    <option value="1year">1年未満</option>
+                                    <option value="1-3years">1～3年</option>
+                                    <option value="3-5years">3～5年</option>
+                                    <option value="5years+">5年以上</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adv-message">メッセージ・ご要望</label>
+                                <textarea id="adv-message" name="message" rows="5" placeholder="貴社の強み、オルカASPに期待すること、特別な要望などをご記入ください"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="adv-agree" required>
+                                    <label for="adv-agree">
+                                        <a href="terms.html" target="_blank">利用規約</a>および
+                                        <a href="privacy-policy.html" target="_blank">プライバシーポリシー</a>に同意します
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="submit-section">
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                審査申請を送信する
+                            </button>
+                            <p class="form-hint" style="margin-top: var(--space-lg);">
+                                ※審査には3～5営業日かかります<br>
+                                ※審査結果は合否に関わらずご連絡いたします
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Affiliate Form -->
+                <div class="form-container" id="affiliate">
+                    <form class="audit-form">
+                        <div class="form-section">
+                            <h3>アフィリエイター様 審査申請フォーム</h3>
+                            
+                            <div class="criteria-check">
+                                <h4>審査基準チェック</h4>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="aff-check1" required>
+                                        <label for="aff-check1">月間10万PV以上のメディアを運営している</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="aff-check2" required>
+                                        <label for="aff-check2">定期的にコンテンツを更新している（週1回以上）</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="aff-check3" required>
+                                        <label for="aff-check3">特定ジャンルでの専門性がある</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="aff-check4" required>
+                                        <label for="aff-check4">法令・ガイドラインを遵守できる</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aff-name">お名前（ハンドルネーム可） <span class="required">*</span></label>
+                                <input type="text" id="aff-name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aff-email">メールアドレス <span class="required">*</span></label>
+                                <input type="email" id="aff-email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aff-site-url">メインサイトURL <span class="required">*</span></label>
+                                <input type="url" id="aff-site-url" name="site_url" required>
+                                <p class="form-hint">審査対象となるメインサイトをご記入ください</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aff-site-genre">サイトジャンル <span class="required">*</span></label>
+                                <select id="aff-site-genre" name="genre" required>
+                                    <option value="">選択してください</option>
+                                    <option value="finance">金融・投資</option>
+                                    <option value="beauty">美容・コスメ</option>
+                                    <option value="health">健康・ダイエット</option>
+                                    <option value="education">教育・学習</option>
+                                    <option value="career">転職・キャリア</option>
+                                    <option value="lifestyle">ライフスタイル</option>
+                                    <option value="tech">テクノロジー・ガジェット</option>
+                                    <option value="travel">旅行・観光</option>
+                                    <option value="other">その他</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aff-pv">月間PV数 <span class="required">*</span></label>
+                                <select id="aff-pv" name="pv" required>
+                                    <option value="">選択してください</option>
+                                    <option value="10-30">10万～30万PV</option>
+                                    <option value="30-50">30万～50万PV</option>
+                                    <option value="50-100">50万～100万PV</option>
+                                    <option value="100-300">100万～300万PV</option>
+                                    <option value="300+">300万PV以上</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aff-sns">SNSアカウント（任意）</label>
+                                <input type="text" id="aff-sns" name="sns" placeholder="Twitter、Instagram、YouTube等のアカウントURL">
+                                <p class="form-hint">影響力の参考にさせていただきます</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aff-experience">アフィリエイト経験 <span class="required">*</span></label>
+                                <select id="aff-experience" name="experience" required>
+                                    <option value="">選択してください</option>
+                                    <option value="none">経験なし</option>
+                                    <option value="1year">1年未満</option>
+                                    <option value="1-3years">1～3年</option>
+                                    <option value="3-5years">3～5年</option>
+                                    <option value="5years+">5年以上</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aff-achievement">過去の実績・月間収益（任意）</label>
+                                <textarea id="aff-achievement" name="achievement" rows="4" placeholder="過去のアフィリエイト実績や月間収益があればご記入ください"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aff-message">アピールポイント <span class="required">*</span></label>
+                                <textarea id="aff-message" name="message" rows="5" required placeholder="サイトの強み、得意分野、オルカASPで取り組みたい案件などをご記入ください"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="aff-agree" required>
+                                    <label for="aff-agree">
+                                        <a href="terms.html" target="_blank">利用規約</a>および
+                                        <a href="privacy-policy.html" target="_blank">プライバシーポリシー</a>に同意します
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="submit-section">
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                審査申請を送信する
+                            </button>
+                            <p class="form-hint" style="margin-top: var(--space-lg);">
+                                ※審査には3～5営業日かかります<br>
+                                ※審査基準に満たない場合でも、将来性を考慮して承認する場合があります
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Invitation Code Form -->
+                <div class="form-container" id="invitation">
+                    <form class="invitation-form">
+                        <div class="form-section">
+                            <h3>招待コード登録フォーム</h3>
+                            
+                            <div class="invitation-code-section">
+                                <h4>🎫 招待コードをお持ちの方</h4>
+                                <p>
+                                    既存メンバーから招待コードを受け取った方は、
+                                    こちらから登録手続きを行ってください。
+                                    招待コードによる参加の場合、審査期間が短縮されます。
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inv-code">招待コード <span class="required">*</span></label>
+                                <input type="text" id="inv-code" name="invitation_code" required placeholder="例: ASPPRO-XXXX-XXXX-XXXX">
+                                <p class="form-hint">8文字または16文字の招待コードを入力してください</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inv-type">参加種別 <span class="required">*</span></label>
+                                <select id="inv-type" name="type" required>
+                                    <option value="">選択してください</option>
+                                    <option value="advertiser">広告主として参加</option>
+                                    <option value="affiliate">アフィリエイターとして参加</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inv-name">お名前 <span class="required">*</span></label>
+                                <input type="text" id="inv-name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inv-email">メールアドレス <span class="required">*</span></label>
+                                <input type="email" id="inv-email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inv-company">会社名・サイト名 <span class="required">*</span></label>
+                                <input type="text" id="inv-company" name="company" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inv-url">URL <span class="required">*</span></label>
+                                <input type="url" id="inv-url" name="url" required>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="inv-agree" required>
+                                    <label for="inv-agree">
+                                        <a href="terms.html" target="_blank">利用規約</a>および
+                                        <a href="privacy-policy.html" target="_blank">プライバシーポリシー</a>に同意します
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="submit-section">
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                招待コードで登録する
+                            </button>
+                            <p class="form-hint" style="margin-top: var(--space-lg);">
+                                ※招待コードによる登録でも簡易審査があります<br>
+                                ※1～2営業日で登録完了のご連絡をいたします
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- General Inquiry Form -->
+                <div class="form-container" id="inquiry">
+                    <form class="inquiry-form">
+                        <div class="form-section">
+                            <h3>その他お問い合わせ</h3>
+                            
+                            <div class="form-group">
+                                <label for="inq-type">お問い合わせ種別 <span class="required">*</span></label>
+                                <select id="inq-type" name="inquiry_type" required>
+                                    <option value="">選択してください</option>
+                                    <option value="service">サービスについて</option>
+                                    <option value="technical">技術的な質問</option>
+                                    <option value="payment">報酬・支払いについて</option>
+                                    <option value="partnership">提携・協業について</option>
+                                    <option value="media">取材・メディア掲載</option>
+                                    <option value="other">その他</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inq-name">お名前 <span class="required">*</span></label>
+                                <input type="text" id="inq-name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inq-email">メールアドレス <span class="required">*</span></label>
+                                <input type="email" id="inq-email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inq-company">会社名（任意）</label>
+                                <input type="text" id="inq-company" name="company">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inq-phone">電話番号（任意）</label>
+                                <input type="tel" id="inq-phone" name="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inq-message">お問い合わせ内容 <span class="required">*</span></label>
+                                <textarea id="inq-message" name="message" rows="8" required placeholder="お問い合わせ内容を詳しくご記入ください"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="inq-agree" required>
+                                    <label for="inq-agree">
+                                        <a href="privacy-policy.html" target="_blank">プライバシーポリシー</a>に同意します
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="submit-section">
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                送信する
+                            </button>
+                            <p class="form-hint" style="margin-top: var(--space-lg);">
+                                ※お問い合わせには2～3営業日以内にご返信いたします
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <section class="content-section" style="margin-top: var(--space-4xl);">
+                    <h2>お問い合わせ先</h2>
+                    <table class="info-table">
+                        <tr>
+                            <th>会社名</th>
+                            <td>株式会社オルカASP</td>
+                        </tr>
+                        <tr>
+                            <th>所在地</th>
+                            <td>〒100-0001 東京都千代田区千代田1-1-1 ASPビル 10F</td>
+                        </tr>
+                        <tr>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <td>
+                                olkaasp.com@gmail.com
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>営業時間</th>
+                            <td>平日 10:00～18:00（土日祝日・年末年始を除く）</td>
+                        </tr>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg class="logo" viewBox="0 0 120 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#footerGradient)"/>
+                        <path d="M8 20C8 20 10 14 16 12C22 10 26 12 28 16C29 18 28 22 24 24C20 26 14 26 10 24C6 22 5 18 8 20Z M18 16C18.5 16 19 16.5 19 17C19 17.5 18.5 18 18 18C17.5 18 17 17.5 17 17C17 16.5 17.5 16 18 16Z M24 14L26 12M28 14L30 12" stroke="white" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="25" font-family="Noto Sans JP" font-weight="700" font-size="14" fill="white">オルカASP</text>
+                        <defs>
+                            <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <p class="footer-description">
+                        完全招待制クローズドASP - 厳選されたパートナーシップ
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">サービス</h4>
+                        <ul class="footer-list">
+                            <li><a href="advertiser.html">広告主向け</a></li>
+                            <li><a href="affiliate.html">アフィリエイター向け</a></li>
+                            <li><a href="plans.html">料金プラン</a></li>
+                            <li><a href="api.html">API連携</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">サポート</h4>
+                        <ul class="footer-list">
+                            <li><a href="faq.html">よくある質問</a></li>
+                            <li><a href="contact.html">お問い合わせ</a></li>
+                            <li><a href="help.html">ヘルプセンター</a></li>
+                            <li><a href="community.html">コミュニティ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">会社情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="company.html">会社概要</a></li>
+                            <li><a href="careers.html">採用情報</a></li>
+                            <li><a href="press.html">プレスリリース</a></li>
+                            <li><a href="news.html">お知らせ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">法的情報</h4>
+                        <ul class="footer-list">
+                            <li><a href="terms.html">利用規約</a></li>
+                            <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+                            <li><a href="commercial-law.html">特定商取引法</a></li>
+                            <li><a href="security.html">セキュリティ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2025 つがるメディア工房. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/page-script.js"></script>
+    <script>
+        // Tab Switching
+        document.querySelectorAll('.form-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const targetTab = this.dataset.tab;
+                
+                // Update active tab
+                document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding form
+                document.querySelectorAll('.form-container').forEach(form => {
+                    form.classList.remove('active');
+                });
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // Form Submission
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                alert('お申し込みありがとうございます。\n審査結果は3～5営業日以内にメールでご連絡いたします。');
+                
+                // Reset form
+                this.reset();
+            });
+        });
+    </script>
+</body>
