@@ -18,7 +18,10 @@ window.addEventListener('load', () => {
         duration: 2.5,
         ease: 'power2.inOut',
         onUpdate: () => {
-            document.querySelector('.progress-text').textContent = Math.round(progress.value) + '%';
+            const progressText = document.querySelector('.progress-text');
+            if (progressText) {
+                progressText.textContent = Math.round(progress.value) + '%';
+            }
         }
     });
     
@@ -31,7 +34,8 @@ window.addEventListener('load', () => {
         opacity: 0,
         duration: 0.8,
         stagger: 0.1,
-        ease: 'back.out(1.7)'
+        ease: 'back.out(1.7)',
+        force3D: true
     })
     // メインタイトル
     .from('.loading-title', {
@@ -123,7 +127,9 @@ function initAnimations() {
         y: 100,
         opacity: 0,
         duration: 1.5,
-        ease: 'power4.out'
+        ease: 'power4.out',
+        force3D: true,
+        will-change: 'transform'
     });
     
     gsap.from('.title-sub', {
@@ -131,7 +137,8 @@ function initAnimations() {
         opacity: 0,
         duration: 1.5,
         delay: 0.3,
-        ease: 'power4.out'
+        ease: 'power4.out',
+        force3D: true
     });
     
     gsap.from('.cta-btn', {
@@ -139,7 +146,8 @@ function initAnimations() {
         opacity: 0,
         duration: 1,
         delay: 0.6,
-        ease: 'back.out(1.7)'
+        ease: 'back.out(1.7)',
+        force3D: true
     });
     
     // パララックススクロール

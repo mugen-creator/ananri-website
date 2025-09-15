@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isBeingWatched = false;
     
     // ランダムにカーソルが呪われる
-    setInterval(() => {
+    let curseInterval = setInterval(() => {
         if (Math.random() > 0.95 && cursor) {
             cursor.classList.add('cursed');
             setTimeout(() => {
@@ -80,10 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.body.appendChild(eye);
         
-        setTimeout(() => {
+        requestAnimationFrame(() => {
             eye.style.opacity = '1';
             eye.style.transform = 'translateX(30px)';
-        }, 100);
+        });
         
         setTimeout(() => {
             eye.style.opacity = '0';
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ランダムに目が現れる
-    setInterval(createWatchingEye, 15000);
+    let eyeInterval = setInterval(createWatchingEye, 15000);
     
     // テキストの狂気度を上げる
     document.querySelectorAll('.section-title').forEach(title => {
